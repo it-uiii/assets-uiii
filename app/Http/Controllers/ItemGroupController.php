@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class ItemGroupController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('permission:golongan-list|golongan-create|golongan-edit|golongan-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:golongan-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:golongan-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:golongan-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

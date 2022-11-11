@@ -130,6 +130,16 @@
                         </a>
                     </li>
                     @endcan
+                    @can('tipeitem-list')
+                    <li class="nav-item">
+                        <a href="{{ route('itemtypes.index') }}" class="nav-link">
+                        <i class="nav-icon fa-sharp fas fa-sitemap"></i>
+                        <p>
+                            Tipe Barang
+                        </p>
+                        </a>
+                    </li>
+                    @endcan
                     @can('human-list')
                     {{-- <li class="nav-item">
                         <a href="" class="nav-link">
