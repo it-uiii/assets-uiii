@@ -9,7 +9,11 @@ class golongan extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'id',
+        'kode_golongan',
+        'nama_golongan'
+    ];
 
     public function item()
     {

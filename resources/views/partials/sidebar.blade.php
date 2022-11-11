@@ -120,6 +120,16 @@
                         </a>
                     </li>
                     @endcan
+                    @can('golongan-list')
+                    <li class="nav-item">
+                        <a href="{{ route('itemgroups.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-sitemap"></i>
+                        <p>
+                            Golongan Barang
+                        </p>
+                        </a>
+                    </li>
+                    @endcan
                     @can('human-list')
                     {{-- <li class="nav-item">
                         <a href="" class="nav-link">

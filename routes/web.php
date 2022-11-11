@@ -13,6 +13,7 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ItemsManagementController;
 use App\Http\Controllers\EntryLetterController;
 use App\Http\Controllers\HumanManagement;
+use App\Http\Controllers\ItemGroupController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\LaporanKinerjaController;
 use App\Http\Controllers\LeaderController;
@@ -73,6 +74,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('suppliers', SuppliersController::class);
     Route::resource('locations', LocationController::class);
     Route::resource('sourceincome', SourceIncomeController::class);
+    Route::resource('itemgroups', ItemGroupController::class);
 
     Route::resource('employees', EmployeesController::class);
 });
