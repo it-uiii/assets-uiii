@@ -12,7 +12,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     @can('letter-list')
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link">
                             <i class="fas fa-envelope nav-icon"></i>
                             <p>
@@ -38,10 +38,10 @@
                             </li>
                             @endcan
                         </ul>
-                    </li>
+                    </li> --}}
                     @endcan
                     @can('performance-report-list')
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link">
                             <i class="nav-icon fas fa-file-alt"></i>
                             <p>
@@ -57,18 +57,18 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     @endcan
                     @can('post-list')
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="pages/widgets.html" class="nav-link">
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>
                             Blogs
-                            {{-- <span class="right badge badge-danger">New</span> --}}
+                            <span class="right badge badge-danger">New</span>
                         </p>
                         </a>
-                    </li>
+                    </li> --}}
                     @endcan
                     @can('asset-management')
                     <li class="nav-item">
@@ -116,7 +116,7 @@
                     </li>
                     @endcan
                     @can('human-list')
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
                             <p>
@@ -132,10 +132,10 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     @endcan
                     @can('admin-list')
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="" class="nav-link">
                             <i class="nav-icon fas fa-wrench"></i>
                             <p>
@@ -177,7 +177,7 @@
                                 </li>
                             @endcan
                         </ul>
-                    </li>
+                    </li> --}}
                     @endcan
                 </ul>
             </li>
