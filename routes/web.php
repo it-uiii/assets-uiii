@@ -21,6 +21,7 @@ use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\OutgoingLetterController;
 use App\Http\Controllers\PerformanceReportController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\SourceIncomeController;
 use App\Http\Controllers\SuppliersController;
 
 /*
@@ -71,6 +72,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('logistics', LogisticController::class);
     Route::resource('suppliers', SuppliersController::class);
     Route::resource('locations', LocationController::class);
+    Route::resource('sourceincome', SourceIncomeController::class);
 
     Route::resource('employees', EmployeesController::class);
 });

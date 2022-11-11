@@ -70,49 +70,54 @@
                         </a>
                     </li> --}}
                     @endcan
-                    @can('asset-management')
+                    @can('asset-list')
                     <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <i class="nav-icon fas fa-cubes"></i>
-                            <p>
-                                Management Barang
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
+                        <a href="{{ route('assets.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-cubes"></i>
+                        <p>
+                            Data Barang
+                        </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            @can('asset-list')
-                            <li class="nav-item">
-                                <a href="{{ route('assets.index') }}" class="nav-link">
-                                    <i class="fas fa-archive nav-icon"></i>
-                                    <p>Data Barang</p>
-                                </a>
-                            </li>    
-                            @endcan
-                            @can('logistic-list')
-                            <li class="nav-item">
-                                <a href="{{ route('logistics.index') }}" class="nav-link">
-                                    <i class="fas fa-truck-fast nav-icon"></i>
-                                    <p>Logistic</p>
-                                </a>
-                            </li>    
-                            @endcan
-                            @can('supplier-list')
-                            <li class="nav-item">
-                                <a href="{{ route('suppliers.index') }}" class="nav-link">
-                                    <i class="fas fa-boxes-packing nav-icon"></i>
-                                    <p>Data Suppliers</p>
-                                </a>
-                            </li>    
-                            @endcan
-                            @can('location-list')
-                            <li class="nav-item">
-                                <a href="{{ route('locations.index') }}" class="nav-link">
-                                    <i class="fas fa-location-pin nav-icon"></i>
-                                    <p>Lokasi</p>
-                                </a>
-                            </li>    
-                            @endcan
-                        </ul>
+                    </li>
+                    @endcan
+                    @can('logistic-list')
+                    <li class="nav-item">
+                        <a href="{{ route('logistics.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-truck-fast"></i>
+                        <p>
+                            Logistik
+                        </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('supplier-list')
+                    <li class="nav-item">
+                        <a href="{{ route('suppliers.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-boxes-packing"></i>
+                        <p>
+                            Suppliers
+                        </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('location-list')
+                    <li class="nav-item">
+                        <a href="{{ route('locations.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-location-pin"></i>
+                        <p>
+                            Lokasi
+                        </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('sumber-list')
+                    <li class="nav-item">
+                        <a href="{{ route('sourceincome.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-hand-holding-heart"></i>
+                        <p>
+                            Sumber Perolehan
+                        </p>
+                        </a>
                     </li>
                     @endcan
                     @can('human-list')
