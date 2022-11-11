@@ -9,7 +9,11 @@ class kelompokBarang extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'id',
+        'nama_kelompok',
+        'kode_kelompok'
+    ];
 
     public function item()
     {

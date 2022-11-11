@@ -120,22 +120,57 @@
                         </a>
                     </li>
                     @endcan
-                    @can('golongan-list')
                     <li class="nav-item">
-                        <a href="{{ route('itemgroups.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-sitemap"></i>
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-sitemap"></i>
+                            <p>
+                                Kategori Barang
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                        @can('golongan-list')
+                            <li class="nav-item">
+                                <a href="{{ route('itemgroups.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Golongan Barang</p>
+                                </a>
+                            </li>    
+                        @endcan
+                        @can('tipeitem-list')
+                            <li class="nav-item">
+                                <a href="{{ route('itemtypes.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Jenis Barang</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('kategoritem-list')
+                            <li class="nav-item">
+                                <a href="{{ route('itemcategories.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kelompok Barang</p>
+                                </a>
+                            </li>
+                        @endcan
+                        </ul>
+                    </li>
+                    @can('detail-list')
+                    <li class="nav-item">
+                        <a href="{{ route('itemdetails.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-info"></i>
                         <p>
-                            Golongan Barang
+                            Detail Barang
                         </p>
                         </a>
                     </li>
                     @endcan
-                    @can('tipeitem-list')
+                    @can('brand-list')
                     <li class="nav-item">
-                        <a href="{{ route('itemtypes.index') }}" class="nav-link">
-                        <i class="nav-icon fa-sharp fas fa-sitemap"></i>
+                        <a href="{{ route('itembrands.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-copyright"></i>
                         <p>
-                            Tipe Barang
+                            Brand Barang
                         </p>
                         </a>
                     </li>

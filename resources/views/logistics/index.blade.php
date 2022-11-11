@@ -33,7 +33,6 @@
                             <th>Nama Barang</th>
                             <th>Satuan</th>
                             <th>Qty</th>
-                            <th></th>
                             <th>Total item</th>
                             <th>Merk</th>
                             <th>Action</th>
@@ -46,7 +45,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix">
-            {{ $items->links('partials.pagination') }}
+            {{-- {{ $items->links('partials.pagination') }} --}}
         </div>
     </div>
 

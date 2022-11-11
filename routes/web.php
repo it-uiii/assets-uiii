@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AdditionalController;
 use App\Http\Controllers\AdditionalReportController;
+use App\Http\Controllers\CategoryItemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ItemsManagementController;
 use App\Http\Controllers\EntryLetterController;
 use App\Http\Controllers\HumanManagement;
+use App\Http\Controllers\ItemBrandController;
+use App\Http\Controllers\ItemDetailController;
 use App\Http\Controllers\ItemGroupController;
 use App\Http\Controllers\ItemTypeController;
 use App\Http\Controllers\PermissionController;
@@ -75,8 +78,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('suppliers', SuppliersController::class);
     Route::resource('locations', LocationController::class);
     Route::resource('sourceincome', SourceIncomeController::class);
+
     Route::resource('itemgroups', ItemGroupController::class);
     Route::resource('itemtypes', ItemTypeController::class);
+    Route::resource('itemcategories', CategoryItemController::class);
+
+    Route::resource('itemdetails', ItemDetailController::class);
+    Route::resource('itembrands', ItemBrandController::class);
+
 
     Route::resource('employees', EmployeesController::class);
 });
