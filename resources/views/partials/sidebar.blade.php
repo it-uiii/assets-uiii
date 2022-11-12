@@ -193,7 +193,7 @@
                             </li>
                         </ul>
                     </li> --}}
-                    @endcan
+                    {{-- @endcan --}}
                     @can('admin-list')
                     {{-- <li class="nav-item">
                         <a href="" class="nav-link">
