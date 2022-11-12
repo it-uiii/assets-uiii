@@ -35,10 +35,9 @@
       </li> --}}
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <img src="{{ asset(Storage::url(auth()->user()->avatar)) }}" class="user-image img-circle elevation-2" alt="User Image">
           <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
         </a>
-        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        {{-- <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-primary">
             <img src="{{ asset(Storage::url(auth()->user()->avatar)) }}" class="img-circle elevation-2" alt="User Image">
@@ -65,7 +64,7 @@
               </form>
             </a>
           </li>
-        </ul>
+        </ul> --}}
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
