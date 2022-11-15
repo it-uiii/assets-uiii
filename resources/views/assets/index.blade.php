@@ -60,7 +60,13 @@
                                 {!! $generator->getBarcode($item->no_inventory, $generator::TYPE_CODE_128) !!}
                             </td> --}}
                             <td class="text-center">{{ $item->jumlah_item }} {{ $item->ukuran_item }}</td>
-                            <td>{{ $item->brand->nama_brand }}</td>
+                            <td>
+                                @if (empty($item->brand->nama_brand))
+                                    -
+                                @else
+                                    {{ $item->brand->nama_barang }}
+                                @endif
+                            </td>
                             <td>
                                 <a class="btn btn-info" href="/assets/{{ $item->id }}"><i class="fas fa-eye"></i></a>
                                 <a class="btn btn-warning" href="/assets/{{ $item->id }}/edit">
