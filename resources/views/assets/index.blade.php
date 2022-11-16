@@ -31,11 +31,9 @@
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>No Inventory</th>
-                            <th>Name Item</th>
-                            <th>Image Item</th>
-                            {{-- <th class="text-center">Barcode</th> --}}
-                            <th>Total item</th>
-                            <th>Merk</th>
+                            <th>Nama</th>
+                            <th>Foto</th>
+                            <th>Total Barang</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -49,7 +47,6 @@
                                 @if (empty($item->image))
                                     no image
                                 @else
-                                    {{-- <img style="max-width: 100px" class="img-fluid" src="{{ asset($item->image) }}" alt="{{ $item->image }}"> --}}
                                     <img src="{{ asset(Storage::url($item->image)) }}" class="img-fluid" style="max-width: 100px">
                                 @endif
                             </td>
@@ -61,14 +58,7 @@
                             </td> --}}
                             <td class="text-center">{{ $item->jumlah_item }} {{ $item->ukuran_item }}</td>
                             <td>
-                                @if (empty($item->brand->nama_brand))
-                                    -
-                                @else
-                                    {{ $item->brand->nama_barang }}
-                                @endif
-                            </td>
-                            <td>
-                                <a class="btn btn-info" href="/assets/{{ $item->id }}"><i class="fas fa-eye"></i></a>
+                                <a class="btn btn-info" href="" data-toggle="modal" data-target="#modal-info-{{ $item->id }}"><i class="fas fa-eye"></i></a>
                                 <a class="btn btn-warning" href="/assets/{{ $item->id }}/edit">
                                     <i class="fas fa-pen"></i>
                                 </a>
@@ -91,6 +81,84 @@
             {{ $items->links('partials.pagination') }}
         </div>
     </div>
+
+    @foreach ($items as $item)
+    <div class="modal fade" id="modal-info-{{ $item->id }}">
+        <div class="modal-dialog">
+            <form action="">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Detail <b>{{ $item->no_inventory }}</b></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>QR Code</label>
+                            @php
+                                echo DNS2D::getBarcodeHTML($item->no_inventory, 'QRCODE');
+                            @endphp
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            @if (empty($item->image))
+                                No Image
+                            @else
+                                <img style="max-width: 200px" class="img-fluid" src="{{ asset(Storage::url($item->image)) }}" alt="{{ $item->image }}">
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Barang</label>
+                            <input type="text" class="form-control" value="{{ $item->nama_barang }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Barang</label>
+                            <input type="text" class="form-control" value="{{ $item->jumlah_item }} {{ $item->ukuran_item }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Lokasi</label>
+                            <input type="text" class="form-control" value="{{ $item->lokasi->lokasi }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Sumber Perolehan</label>
+                            <input type="text" class="form-control" value="{{ $item->sumberItem->sumber }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Sumber Perolehan</label>
+                            <input type="text" class="form-control" value="{{ $item->sumberItem->sumber }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Golongan Barang</label>
+                            <input type="text" class="form-control" value="{{ $item->golonganItem->nama_golongan }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Jenis Barang</label>
+                            <input type="text" class="form-control" value="{{ $item->tipeItem->nama_tipe }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Kelompok Barang</label>
+                            <input type="text" class="form-control" value="{{ $item->kelompokItem->nama_kelompok }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Merk</label>
+                            <input type="text" class="form-control" value="{{ $item->brand->nama_brand }}" readonly>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <a href="" class="btn btn-default">
+                            Print
+                        </a>
+                    </div>
+                </div>
+            </form>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    @endforeach
 
 
     <div class="modal fade" id="modal-default">
