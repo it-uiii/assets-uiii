@@ -195,7 +195,7 @@
                     </li> --}}
                     {{-- @endcan --}}
                     @can('admin-list')
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a href="" class="nav-link">
                             <i class="nav-icon fas fa-wrench"></i>
                             <p>
@@ -237,7 +237,7 @@
                                 </li>
                             @endcan
                         </ul>
-                    </li> --}}
+                    </li>
                     @endcan
                 </ul>
             </li>
