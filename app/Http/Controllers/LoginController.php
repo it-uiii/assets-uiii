@@ -37,6 +37,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->away('https://sso.uiii.ac.id/login');
+        // return redirect()->away('https://sso.uiii.ac.id/login');
+        return redirect('/');
     }
 }
