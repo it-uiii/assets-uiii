@@ -9,30 +9,30 @@ class items extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    // protected $guarded = ['id'];
 
-    // protected $fillable = [
-    //     'id',
-    //     'nama_barang',
-    //     'nilai_perolehan',
-    //     'jumlah_item',
-    //     'ukuran_item',
-    //     'tanggal_invoice',
-    //     'lokasi_id',
-    //     'sumber_perolehan_id',
-    //     'golongan_item_id',
-    //     'jenis_item_id',
-    //     'kelompok_item_id',
-    //     'detailbarang_id',
-    //     'supplier_id',
-    //     'brand_id',
-    //     'stock',
-    //     'image',
-    //     'umur_penyusutan',
-    //     'user_id',
-    //     'no_inventory'
+    protected $fillable = [
+        'id',
+        'nama_barang',
+        'nilai_perolehan',
+        'jumlah_item',
+        'ukuran_item',
+        'tanggal_invoice',
+        'lokasi_id',
+        'sumber_perolehan_id',
+        'golongan_item_id',
+        'jenis_item_id',
+        'kelompok_item_id',
+        'detailbarang_id',
+        'supplier_id',
+        'brand_id',
+        'stock',
+        'image',
+        'umur_penyusutan',
+        'user_id',
+        'no_inventory'
 
-    // ];
+    ];
 
     public function lokasi()
     {
