@@ -46,7 +46,7 @@ class ItemTypeController extends Controller
     {
         $validate = $request->validate([
             'nama_tipe' => ['required', 'unique:tipes', 'max:100'],
-            'kode_tipe' => ['required', 'max:3']
+            'kode_tipe' => ['required', 'max:3', 'unique:tipes']
         ]);
 
         tipe::create($validate);
@@ -103,6 +103,6 @@ class ItemTypeController extends Controller
     public function destroy(tipe $itemtype)
     {
         $itemtype->delete();
-        return redirect()->route('itemtypes.index');
+        return redirect()->route('itemtypes.index')->with('danger', 'tipe barang dihapus');
     }
 }

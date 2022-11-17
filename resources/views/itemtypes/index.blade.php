@@ -3,9 +3,11 @@
     <div class="card">
         <div class="card-header">
             <div class="card-title">
+                @can('tipeitem-create')
                 <a class="btn btn-primary" href="/itemtypes/create">
                     <i class="fas fa-plus"></i>
                 </a>
+                @endcan
             </div>
         </div>
         <div class="card-body">
@@ -26,10 +28,12 @@
                                 <td>{{ $item->nama_tipe }}</td>
                                 <td>{{ $item->kode_tipe }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="/itemtypes/{{ $item->id }}"><i class="fas fa-eye"></i></a>
-                                        <a class="btn btn-warning" href="/itemtypes/{{ $item->id }}/edit">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
+                                    @can('tipeitem-edit')
+                                    <a class="btn btn-warning" href="/itemtypes/{{ $item->id }}/edit">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                    @endcan
+                                    @can('tipeitem-delete')
                                     <form action="/itemtypes/{{ $item->id }}" method="post" class="d-inline">
                                         @method('delete')
                                         @csrf
@@ -38,6 +42,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
