@@ -12,7 +12,7 @@ class LoginController extends Controller
     public function index()
     {
         // return redirect()->away('https://sso.uiii.ac.id/login');
-        return view('login.index');
+        return view('login.index', ['title' => 'Login']);
     }
 
     public function auth(Request $request)

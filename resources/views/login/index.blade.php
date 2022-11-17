@@ -13,7 +13,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-    <title>SSO UIII</title>
+    <title>Asset UIII | {{ $title }}</title>
 </head>
 <body>
 <div class="d-lg-flex half">

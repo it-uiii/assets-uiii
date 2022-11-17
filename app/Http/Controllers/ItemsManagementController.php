@@ -294,4 +294,8 @@ class ItemsManagementController extends Controller
         $asset->delete();
         return redirect()->route('assets.index');
     }
+
+    public function import()
+    {
+    }
 }
