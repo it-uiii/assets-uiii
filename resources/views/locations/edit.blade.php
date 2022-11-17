@@ -3,23 +3,22 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card card-primary">
-            <form action="/locations" method="post">
+            <form action="/locations/{{ $data->id }}" method="post">
+            @method('put')
             @csrf
             <div class="card-body">
                 <div class="form-group">
                     <label>Kode Lokasi</label>
-                    <div class="col-2">
-                        <input type="number" class="form-control @error('kode_lokasi') is-invalid @enderror" name="kode_lokasi" placeholder="001" autofocus autocomplete="off" value="{{ old('kode_lokasi') }}">
-                        @error('kode_lokasi')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+                    <input type="text" class="form-control @error('kode_lokasi') is-invalid @enderror" id="kode_lokasi" name="kode_lokasi" value="{{ old('kode_lokasi', $data->kode_lokasi) }}">
+                    @error('kode_lokasi')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label>Nama Lokasi</label>
-                    <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ old('lokasi') }}" autofocus autocomplete="off">
+                    <input type="text" class="form-control @error('lokasi') is-invalid @enderror" id="lokasi" name="lokasi" value="{{ old('lokasi', $data->lokasi) }}" autofocus autocomplete="off">
                     @error('lokasi')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -28,7 +27,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-warning">Update</button>
                 <a class="btn btn-danger" href="/locations">Cancel</a>
             </div>
             </form>

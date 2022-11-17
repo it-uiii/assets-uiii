@@ -20,9 +20,15 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $locations = Locations::paginate(20);
+        if ($request->has('search')) {
+            $locations = Locations::where('lokasi', 'LIKE', '%' . $request->search . '%')
+                ->orWhere('kode_lokasi', 'LIKE', '%' . $request->search . '%')
+                ->paginate(20);
+        } else {
+            $locations = Locations::paginate(20);
+        }
         return view('locations.index', ['title' => 'Locations', 'subtitle' => 'List'], compact('locations'));
     }
 
@@ -49,7 +55,8 @@ class LocationController extends Controller
             'kode_lokasi'   => 'required'
         ]);
 
-        dd($validate);
+        $validate['kordinasi'] = $request->lokasi;
+
         lokasi::create($validate);
         return redirect('locations')->with('success', 'Lokasi baru telah ditambahkan');
     }
@@ -62,8 +69,6 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        $loc = Locations::find($id);
-        dd($loc);
     }
 
     /**
@@ -74,7 +79,8 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = lokasi::find($id);
+        return view('locations.edit', ['title' => 'Location', 'subtitle' => 'Edit'], compact('data'));
     }
 
     /**
@@ -84,9 +90,18 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, lokasi $location)
     {
-        //
+        $validate = $request->validate([
+            'lokasi'        => 'required',
+            'kode_lokasi'   => 'required'
+        ]);
+
+        $validate = $request->all();
+        $validate['kordinasi'] = $request->lokasi;
+
+        $location->update($validate);
+        return redirect('locations')->with('warning', 'Lokasi telah diubah');
     }
 
     /**
@@ -95,8 +110,9 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(lokasi $location)
     {
-        //
+        $location->delete();
+        return redirect('locations')->with('danger', 'Lokasi telah dihapus');
     }
 }

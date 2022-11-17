@@ -11,21 +11,8 @@
                 @endcan
             </div>
             <div class="float-right">
-                {{-- @can('user-import')
-                    <button type="button" class="btn btn-outline-success" title="Import" data-toggle="modal" data-target="#modal-import">
-                        <i class="far fa-file-excel"></i>
-                    </button>
-                @endcan
-                @can('user-export')
-                    <form action="{{ route('locations.export') }}" class="d-inline" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-outline-info" title="Export">
-                            <i class="fas fa-file-export"></i>
-                        </button>
-                    </form>
-                @endcan --}}
                 <div class="input-group">
-                    <form action="/employees" method="get">
+                    <form action="/locations" method="get">
                         <input type="text" class="form-control" placeholder="Cari lokasi" name="search" autocomplete="off">
                     </form>
                     <div class="input-group-append">
@@ -65,7 +52,6 @@
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="/locations/{{ $item->id }}"><i class="fas fa-eye"></i></a>
                                     @can('location-edit')
                                         <a class="btn btn-warning" href="/locations/{{ $item->id }}/edit"><i
                                                 class="fas fa-pen"></i></a>
