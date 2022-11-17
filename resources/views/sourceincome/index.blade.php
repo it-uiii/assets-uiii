@@ -26,10 +26,12 @@
                                 <td>{{ $item->sumber }}</td>
                                 <td>{{ $item->kode_sumber }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="/sourceincome/{{ $item->id }}"><i class="fas fa-eye"></i></a>
-                                        <a class="btn btn-warning" href="/sourceincome/{{ $item->id }}/edit">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
+                                    @can('sumber-edit')
+                                    <a class="btn btn-warning" href="/sourceincome/{{ $item->id }}/edit">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                    @endcan
+                                    @can('sumber-delete')
                                     <form action="/sourceincome/{{ $item->id }}" method="post" class="d-inline">
                                         @method('delete')
                                         @csrf
@@ -38,6 +40,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
