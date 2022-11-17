@@ -3,9 +3,11 @@
     <div class="card">
         <div class="card-header">
             <div class="card-title">
-                <a class="btn btn-primary" href="/itemdetails/create">
+                @can('brand-create')
+                <a class="btn btn-primary" href="/itembrands/create">
                     <i class="fas fa-plus"></i>
                 </a>
+                @endcan
             </div>
         </div>
         <div class="card-body">
@@ -26,18 +28,21 @@
                                 <td>{{ $item->nama_brand }}</td>
                                 <td>{{ $item->kode_brand }}</td>
                                 <td>
-                                    {{-- <a class="btn btn-info" href="/itemdetails/{{ $item->id }}"><i class="fas fa-eye"></i></a> --}}
-                                        <a class="btn btn-warning" href="/itemdetails/{{ $item->id }}/edit">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
-                                    <form action="/itemdetails/{{ $item->id }}" method="post" class="d-inline">
+                                    @can('brand-edit')
+                                    <a class="btn btn-warning" href="/itembrands/{{ $item->id }}/edit">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                    @endcan
+                                    @can('brand-delete')
+                                    <form action="/itembrands/{{ $item->id }}" method="post" class="d-inline">
                                         @method('delete')
                                         @csrf
                                         <button class="btn btn-danger"
-                                            onclick="return confirm('Are you sure want delete this source group items?')">
+                                            onclick="return confirm('Are you sure want delete this brand?')">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
