@@ -45,13 +45,16 @@ class SuppliersController extends Controller
     public function store(Request $request)
     {
 
-        dd($request);
         $validate = $request->validate([
             'kode_pemasok' => 'required|unique:suppliers',
             'nama_pemasok' => 'required|max:191|min:10',
         ]);
 
-        $validate['user_id'];
+        $validate = $request->all();
+        $validate['user_id'] = auth()->user()->id;
+
+        supplier::create($validate);
+        return redirect('suppliers')->with('success', 'Supplier baru ditambahkan');
     }
 
     /**
@@ -71,9 +74,10 @@ class SuppliersController extends Controller
      * @param  \App\Models\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(supplier $supplier)
+    public function edit($id)
     {
-        //
+        $data = supplier::find($id);
+        return view('suppliers.edit', ['title' => 'Suppliers', 'subtitle' => 'Edit'], compact('data'));
     }
 
     /**
@@ -85,7 +89,16 @@ class SuppliersController extends Controller
      */
     public function update(Request $request, supplier $supplier)
     {
-        //
+        $validate = $request->validate([
+            'kode_pemasok' => 'required',
+            'nama_pemasok' => 'required|max:191|min:10',
+        ]);
+
+        $validate = $request->all();
+        $validate['user_id'] = auth()->user()->id;
+
+        $supplier->update($validate);
+        return redirect('/suppliers')->with('warning', 'Supplier telah diubah');
     }
 
     /**
@@ -96,6 +109,7 @@ class SuppliersController extends Controller
      */
     public function destroy(supplier $supplier)
     {
-        //
+        $supplier->delete();
+        return redirect('/suppliers')->with('danger', 'Supplier telah dihapus');
     }
 }

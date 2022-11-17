@@ -2,13 +2,14 @@
 @section('container')
 <div class="col-md-8">
     <div class="card">
-        <form class="form-horizontal" action="/suppliers" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" action="/suppliers/{{ $data->id }}" method="POST">
+        @method('put')
         @csrf
         <div class="card-body">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Kode Supplier</label>
                 <div class="col-2">
-                    <input type="number" class="form-control @error('kode_pemasok') is-invalid @enderror" name="kode_pemasok" placeholder="0001" autofocus autocomplete="off" value="{{ old('kode_pemasok') }}">
+                    <input type="number" class="form-control @error('kode_pemasok') is-invalid @enderror" name="kode_pemasok" autofocus autocomplete="off" value="{{ old('kode_pemasok', $data->kode_pemasok) }}">
                     @error('kode_pemasok')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -22,7 +23,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Nama Supplier</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control @error('nama_pemasok') is-invalid @enderror" name="nama_pemasok" autofocus autocomplete="off" value="{{ old('nama_pemasok') }}">
+                    <input type="text" class="form-control @error('nama_pemasok') is-invalid @enderror" name="nama_pemasok" autocomplete="off" value="{{ old('nama_pemasok', $data->nama_pemasok) }}">
                     @error('nama_pemasok')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -33,7 +34,7 @@
             <div class="form-group row">
                 <label for="" class="col-sm-2 col-form-label">Tanggal Daftar</label>
                 <div class="col-sm-10">
-                    <input type="date" class="form-control @error('tanggal_daftar') is-invalid @enderror" name="tanggal_daftar" value="{{ old('tanggal_daftar') }}">
+                    <input type="date" class="form-control @error('tanggal_daftar') is-invalid @enderror" name="tanggal_daftar" value="{{ old('tanggal_daftar', $data->tanggal_daftar) }}">
                     @error('tanggal_daftar')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -44,7 +45,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Telpon</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control @error('telpon') is-invalid @enderror" name="telpon" autofocus autocomplete="off" value="{{ old('telpon') }}">
+                    <input type="number" class="form-control @error('telpon') is-invalid @enderror" name="telpon" autofocus autocomplete="off" value="{{ old('telpon', $data->telpon) }}">
                     @error('telpon')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -56,13 +57,13 @@
                 <label for="" class="col-sm-2 col-form-label">Alamat Supplier</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" id="alamat" name="alamat">
-                        {!! old('alamat') !!}
+                        {!! old('alamat', $data->alamat) !!}
                     </textarea>
                 </div>
             </div>
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Tambah</button>
+            <button type="submit" class="btn btn-warning">Update</button>
             <a href="/suppliers" class="btn btn-danger">Kembali</a>
         </div>
         </form>
