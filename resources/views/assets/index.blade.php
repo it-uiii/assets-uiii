@@ -32,7 +32,7 @@
                             <th style="width: 10px">#</th>
                             <th>No Inventory</th>
                             <th>Nama</th>
-                            <th>Foto</th>
+                            {{-- <th>Foto</th> --}}
                             <th>Total Barang</th>
                             <th>Action</th>
                         </tr>
@@ -43,18 +43,12 @@
                             <td>{{ $items->firstItem() + $loop->index }}</td>
                             <td>{{ $item->no_inventory }}</td>
                             <td>{{ $item->nama_barang }}</td>
-                            <td>
+                            {{-- <td>
                                 @if (empty($item->image))
                                     no image
                                 @else
                                     <img src="{{ asset(Storage::url($item->image)) }}" class="img-fluid" style="max-width: 100px">
                                 @endif
-                            </td>
-                            {{-- @php
-                                $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
-                            @endphp --}}
-                            {{-- <td>
-                                {!! $generator->getBarcode($item->no_inventory, $generator::TYPE_CODE_128) !!}
                             </td> --}}
                             <td class="text-center">{{ $item->jumlah_item }} {{ $item->ukuran_item }}</td>
                             <td>
@@ -76,12 +70,12 @@
                 </table>
             </div>
         </div>
-        <!-- /.card-body -->
         <div class="card-footer clearfix">
             {{ $items->links('partials.pagination') }}
         </div>
     </div>
 
+    {{-- Detail --}}
     @foreach ($items as $item)
     <div class="modal fade" id="modal-info-{{ $item->id }}">
         <div class="modal-dialog">
@@ -153,20 +147,17 @@
                     </div>
                 </div>
             </form>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
     @endforeach
 
-
+    {{-- import --}}
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
             <form action="">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Default Modal</h4>
+                        <h4 class="modal-title">Import data barang</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -193,9 +184,6 @@
                     </div>
                 </div>
             </form>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
 @endsection
