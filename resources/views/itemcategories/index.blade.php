@@ -3,9 +3,11 @@
     <div class="card">
         <div class="card-header">
             <div class="card-title">
+                @can('kategoritem-create')
                 <a class="btn btn-primary" href="/itemcategories/create">
                     <i class="fas fa-plus"></i>
                 </a>
+                @endcan
             </div>
         </div>
         <div class="card-body">
@@ -26,10 +28,12 @@
                                 <td>{{ $item->nama_kelompok }}</td>
                                 <td>{{ $item->kode_kelompok }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="/itemcategories/{{ $item->id }}"><i class="fas fa-eye"></i></a>
-                                        <a class="btn btn-warning" href="/itemcategories/{{ $item->id }}/edit">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
+                                    @can('kategoritem-edit')
+                                    <a class="btn btn-warning" href="/itemcategories/{{ $item->id }}/edit">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                    @endcan
+                                    @can('kategoritem-delete')
                                     <form action="/itemcategories/{{ $item->id }}" method="post" class="d-inline">
                                         @method('delete')
                                         @csrf
@@ -38,6 +42,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
