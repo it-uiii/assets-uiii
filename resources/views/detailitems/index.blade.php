@@ -3,9 +3,11 @@
     <div class="card">
         <div class="card-header">
             <div class="card-title">
+                @can('detail-create')
                 <a class="btn btn-primary" href="/itemdetails/create">
                     <i class="fas fa-plus"></i>
                 </a>
+                @endcan
             </div>
         </div>
         <div class="card-body">
@@ -26,10 +28,12 @@
                                 <td>{{ $item->detail_barang }}</td>
                                 <td>{{ $item->seq_number }}</td>
                                 <td>
-                                    {{-- <a class="btn btn-info" href="/itemdetails/{{ $item->id }}"><i class="fas fa-eye"></i></a> --}}
-                                        <a class="btn btn-warning" href="/itemdetails/{{ $item->id }}/edit">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
+                                    @can('detail-edit')
+                                    <a class="btn btn-warning" href="/itemdetails/{{ $item->id }}/edit">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                    @endcan
+                                    @can('detail-delete')
                                     <form action="/itemdetails/{{ $item->id }}" method="post" class="d-inline">
                                         @method('delete')
                                         @csrf
@@ -38,6 +42,7 @@
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
