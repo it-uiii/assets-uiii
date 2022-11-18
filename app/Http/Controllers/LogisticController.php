@@ -25,7 +25,7 @@ class LogisticController extends Controller
      */
     public function create()
     {
-        //
+        return view('logistics.create', ['title' => 'Logistics', 'subtitle' => 'Create']);
     }
 
     /**

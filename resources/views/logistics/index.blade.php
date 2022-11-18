@@ -3,20 +3,24 @@
     <div class="card">
         <div class="card-header">
             <div class="card-title">
-                <a class="btn btn-primary" href="/assets/create">
+                @can('logistic-create')
+                <a class="btn btn-primary" href="/logistics/create">
                     <i class="fas fa-plus"></i>
                 </a>
+                @endcan
+                @can('logistic-import')
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
                     <i class="fa-solid fa-file-excel"></i>
                 </button>
+                @endcan
             </div>
             <div class="float-right d-inline">
                 <div class="input-group">
-                    <form action="/assets" method="get">
-                        <input type="text" class="form-control" placeholder="Search no. inventory/name item" name="search" autocomplete="off">
+                    <form action="/logistics" method="get">
+                        <input type="text" class="form-control" placeholder="Nama Barang" name="search" autocomplete="off">
                     </form>
                     <div class="input-group-append">
-                        <a class="btn btn-outline-secondary" href="/assets">
+                        <a class="btn btn-outline-secondary" href="/logistics">
                             <i class="fa-solid fa-arrows-rotate"></i>
                             Reset
                         </a>
@@ -26,19 +30,32 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered text-center">
                     <thead>
                         <tr>
-                            <th style="width: 10px">#</th>
-                            <th>Nama Barang</th>
+                            <th rowspan="2" style="width: 10px">#</th>
+                            <th rowspan="2">Nama Barang</th>
+                            <th rowspan="2">Satuan</th>
+                            <th rowspan="2">Qty</th>
+                            <th colspan="3">Harga</th>
+                            <th rowspan="2">Sisa</th>
+                            <th rowspan="2">Saldo Akhir</th>
+                            <th rowspan="2">Action</th>
+                        </tr>
+                        <tr>
                             <th>Satuan</th>
-                            <th>Qty</th>
-                            <th>Total item</th>
-                            <th>Merk</th>
-                            <th>Action</th>
+                            <th>Sebelum Pajak</th>
+                            <th>Setelah Pajak</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @if (count($items))
+                            <td colspan="10">No data</td>
+                        @else
+                            @foreach ($items as $item)
+                                <td></td>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
