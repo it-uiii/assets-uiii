@@ -13,6 +13,7 @@ class DashboardController extends Controller
         $menu       = new Menu();
         $barang     = DB::table('items')->count();
         $supplier   = DB::table('suppliers')->count();
+        $lokasi     = DB::table('lokasis')->count();
         $locations  = items::all();
 
         $sidebar_menu = $menu->getMenu();
@@ -21,7 +22,8 @@ class DashboardController extends Controller
             'subtitle'  => 'Dashboard',
             'items'     => $barang,
             'suppliers' => $supplier,
-            'locations' => $locations
+            'locations' => $locations,
+            'loc'       => $lokasi
         ]);
     }
 }

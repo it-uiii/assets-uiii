@@ -80,9 +80,9 @@
                     <option value="">Pilih Lokasi</option>
                     @foreach ($areas as $area)
                         @if ($data->lokasi_id)
-                            <option value="{{ $area->id }}.{{ $area->kode_lokasi }}" selected>{{ $area->lokasi }}</option>
+                            <option value="{{ $area->id }}.{{ $area->kode_lokasi }}" selected>{{ $area->lokasi }} - {{ $area->kode_lokasi }}</option>
                         @else
-                            <option value="{{ $area->id }}.{{ $area->kode_lokasi }}">{{ $area->lokasi }}</option>
+                            <option value="{{ $area->id }}.{{ $area->kode_lokasi }}">{{ $area->lokasi }} - {{ $area->kode_lokasi }}</option>
                         @endif
                     @endforeach
                 </select>
@@ -100,9 +100,9 @@
                     <option value="">Pilih Sumber Perolehan</option>
                     @foreach ($sumbers as $sumber)
                         @if ($data->sumber_perolehan_id)
-                            <option value="{{ $sumber->id }}.{{ $sumber->kode_sumber }}" selected>{{ $sumber->sumber }}</option>
+                            <option value="{{ $sumber->id }}.{{ $sumber->kode_sumber }}" selected>{{ $sumber->sumber }} - {{ $sumber->kode_sumber }}</option>
                         @else
-                            <option value="{{ $sumber->id }}.{{ $sumber->kode_sumber }}">{{ $sumber->sumber }}</option>
+                            <option value="{{ $sumber->id }}.{{ $sumber->kode_sumber }}">{{ $sumber->sumber }} - {{ $sumber->kode_sumber }}</option>
                         @endif
                     @endforeach
                 </select>
@@ -120,9 +120,9 @@
                     <option value="">Pilih Golongan Barang</option>
                     @foreach ($golongans as $golongan)
                         @if ($data->golongan_item_id)
-                            <option value="{{ $golongan->id }}.{{ $golongan->kode_golongan }}" selected>{{ $golongan->nama_golongan }}</option>
+                            <option value="{{ $golongan->id }}.{{ $golongan->kode_golongan }}" selected>{{ $golongan->nama_golongan }} - {{ $golongan->kode_golongan }}</option>
                         @else
-                            <option value="{{ $golongan->id }}.{{ $golongan->kode_golongan }}">{{ $golongan->nama_golongan }}</option>
+                            <option value="{{ $golongan->id }}.{{ $golongan->kode_golongan }}">{{ $golongan->nama_golongan }} - {{ $golongan->kode_golongan }}</option>
                         @endif
                     @endforeach
                 </select>
@@ -140,9 +140,9 @@
                     <option value="">Pilih Jenis Barang</option>
                     @foreach ($tipes as $tipe)
                         @if ($data->jenis_item_id)
-                            <option value="{{ $tipe->id }}.{{ $tipe->kode_tipe }}" selected>{{ $tipe->nama_tipe }}</option>
+                            <option value="{{ $tipe->id }}.{{ $tipe->kode_tipe }}" selected>{{ $tipe->nama_tipe }} - {{ $tipe->kode_tipe }}</option>
                         @else
-                            <option value="{{ $tipe->id }}.{{ $tipe->kode_tipe }}">{{ $tipe->nama_tipe }}</option>
+                            <option value="{{ $tipe->id }}.{{ $tipe->kode_tipe }}">{{ $tipe->nama_tipe }} - {{ $tipe->kode_tipe }}</option>
                         @endif
                     @endforeach
                 </select>
@@ -160,9 +160,9 @@
                     <option value="">Pilih Kelompok Barang</option>
                     @foreach ($kelompoks as $kelompok)
                         @if ($data->kelompok_item_id)
-                            <option value="{{ $kelompok->id }}.{{ $kelompok->kode_kelompok }}" selected>{{ $kelompok->nama_kelompok }}</option>
+                            <option value="{{ $kelompok->id }}.{{ $kelompok->kode_kelompok }}" selected>{{ $kelompok->nama_kelompok }} - {{ $kelompok->kode_kelompok }}</option>
                         @else
-                            <option value="{{ $kelompok->id }}.{{ $kelompok->kode_kelompok }}">{{ $kelompok->nama_kelompok }}</option>
+                            <option value="{{ $kelompok->id }}.{{ $kelompok->kode_kelompok }}">{{ $kelompok->nama_kelompok }} - {{ $kelompok->kode_kelompok }}</option>
                         @endif
                     @endforeach
                 </select>
@@ -180,9 +180,9 @@
                     <option value="">Pilih barang</option>
                     @foreach ($details as $detail)
                         @if ($data->detailbarang_id)
-                            <option value="{{ $detail->id }}.{{ $detail->seq_number }}" selected>{{ $detail->detail_barang }}</option>
+                            <option value="{{ $detail->id }}.{{ $detail->seq_number }}" selected>{{ $detail->detail_barang }} - {{ $detail->seq_number }}</option>
                         @else
-                            <option value="{{ $detail->id }}.{{ $detail->seq_number }}">{{ $detail->detail_barang }}</option>
+                            <option value="{{ $detail->id }}.{{ $detail->seq_number }}">{{ $detail->detail_barang }} - {{ $detail->seq_number }}</option>
                         @endif
                     @endforeach
                 </select>

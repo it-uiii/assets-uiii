@@ -34,9 +34,10 @@ class ItemsManagementController extends Controller
         if ($request->has('search')) {
             $items = items::where('no_inventory', 'LIKE', '%' . $request->search . '%')
                 ->orWhere('nama_barang', 'LIKE', '%' . $request->search . '%')
+                ->orderBy('created_at', 'desc')
                 ->paginate(20);
         } else {
-            $items = items::paginate(20);
+            $items = items::orderBy('created_at', 'desc')->paginate(20);
         }
 
         return view('assets.index', ['title' => 'Assets', 'subtitle' => 'List'], compact('items'));
@@ -112,7 +113,6 @@ class ItemsManagementController extends Controller
         $id_lokasi = $lokasi[0];
         $kode_lokasi = $lokasi[1];
         $data['lokasi_id'] = $id_lokasi;
-
 
         $sumber_perolehan = explode(".", $request->sumber_perolehan_id);
         $id_sumber = $sumber_perolehan[0];
