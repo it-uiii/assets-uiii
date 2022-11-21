@@ -234,27 +234,14 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="nm_barang" class="col-sm-2 col-form-label">Latitude & Longitude</label>
+            <label for="nm_barang" class="col-sm-2 col-form-label">Lat & Long</label>
             <div class="col-sm-10">
+                <input type="text" class="form-control" id="location" name="location" value="{{ $data->latitude }},{{ $data->longitude }}" required readonly>
                 <div class="row">
-                    <div class="col-3">
-                        <input type="text" class="form-control" placeholder="Latitude" id="latitude" name="latitude" value="{{ old('latitude', $data->latitude) }}" required>
-                    </div>
-                    ,
-                    <div class="col-4">
-                        <input type="text" class="form-control" placeholder="Longitude" id="longitude" name="longitude" value="{{ old('longitude', $data->longitude) }}" required>
+                    <div class="col-6">
+                        <div class="mt-2" id="map" name="map" style="width: 600px; height: 400px;" ></div>
                     </div>
                 </div>
-                @error('latitude')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-                @error('longitude')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
             </div>
         </div>
         <div class="form-group row">
@@ -358,5 +345,23 @@
             imgPreview.src = oFREvent.target.result;
         }
     }
+
+    const map = L.map('map').setView([-6.388551, 106.861918], 16);
+
+	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19
+	}).addTo(map);
+
+        var inputV = document.getElementById("location");
+
+	function onMapClick(e) {
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+        
+        inputV.value = `${lat},${lng}`;
+
+    }
+
+	map.on('click', onMapClick);
 </script>
 @endsection

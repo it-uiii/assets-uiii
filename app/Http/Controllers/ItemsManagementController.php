@@ -273,6 +273,12 @@ class ItemsManagementController extends Controller
         $seq_number = $detail[1];
         $data['detailbarang_id'] = $id_detail;
 
+        $location = explode(",", $request->location);
+        $lat = $location[0];
+        $lng = $location[1];
+        $data['latitude'] = $lat;
+        $data['longitude'] = $lng;
+
         $myDate = date('Y');
         $year = substr($myDate, 2);
 
