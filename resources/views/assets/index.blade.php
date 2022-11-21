@@ -32,7 +32,6 @@
                             <th style="width: 10px">#</th>
                             <th>No Inventory</th>
                             <th>Nama</th>
-                            {{-- <th>Foto</th> --}}
                             <th>Total Barang</th>
                             <th>Action</th>
                         </tr>
@@ -43,13 +42,6 @@
                             <td>{{ $items->firstItem() + $loop->index }}</td>
                             <td>{{ $item->no_inventory }}</td>
                             <td>{{ $item->nama_barang }}</td>
-                            {{-- <td>
-                                @if (empty($item->image))
-                                    no image
-                                @else
-                                    <img src="{{ asset(Storage::url($item->image)) }}" class="img-fluid" style="max-width: 100px">
-                                @endif
-                            </td> --}}
                             <td class="text-center">{{ $item->jumlah_item }} {{ $item->ukuran_item }}</td>
                             <td>
                                 <a class="btn btn-info" href="" data-toggle="modal" data-target="#modal-info-{{ $item->id }}"><i class="fas fa-eye"></i></a>

@@ -79,21 +79,23 @@ class ItemsManagementController extends Controller
      */
     public function store(Request $request)
     {
+
         $data = $request->validate([
-            'nama_barang' => ['required', 'string', 'max:255'],
-            'nilai_perolehan' => ['required', 'max:255'],
-            'jumlah_item' => ['required'],
-            'ukuran_item' => ['required'],
-            'tanggal_invoice' => ['required', 'date'],
-            'lokasi_id' => ['required'],
-            'sumber_perolehan_id' => ['required'],
-            'golongan_item_id' => ['required'],
-            'jenis_item_id' => ['required'],
-            'kelompok_item_id' => ['required'],
-            'detailbarang_id' => ['required'],
-            'brand_id' => ['required'],
-            'stock' => ['required', 'boolean'],
-            'image.*' => ['image', 'mimes:png,jpg,jpeg,JPG,JPEG']
+            'nama_barang'           => ['required', 'string', 'max:255'],
+            'nilai_perolehan'       => ['required', 'max:255'],
+            'jumlah_item'           => ['required'],
+            'ukuran_item'           => ['required'],
+            'tanggal_invoice'       => ['required', 'date'],
+            'lokasi_id'             => ['required'],
+            'sumber_perolehan_id'   => ['required'],
+            'golongan_item_id'      => ['required'],
+            'jenis_item_id'         => ['required'],
+            'kelompok_item_id'      => ['required'],
+            'detailbarang_id'       => ['required'],
+            'brand_id'              => ['required'],
+            'stock'                 => ['required', 'boolean'],
+            'image.*'               => ['image', 'mimes:png,jpg,jpeg,JPG,JPEG'],
+            'location'              => ['required'],
         ]);
 
         // if ($request->file('image')) {
@@ -136,6 +138,13 @@ class ItemsManagementController extends Controller
         $id_detail = $detail[0];
         $seq_number = $detail[1];
         $data['detailbarang_id'] = $id_detail;
+
+        $location = explode(",", $request->location);
+        $lat = $location[0];
+        $lng = $location[1];
+        $data['latitude'] = $lat;
+        $data['longitude'] = $lng;
+
 
         $myDate = date('Y');
         $year = substr($myDate, 2);
