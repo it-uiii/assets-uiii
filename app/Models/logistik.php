@@ -12,6 +12,7 @@ class logistik extends Model
     protected $fillable = [
         'id',
         'nama_barang',
+        'quantity',
         'satuan',
         'harga_satuan',
         'pajak',

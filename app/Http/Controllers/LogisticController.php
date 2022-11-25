@@ -14,7 +14,7 @@ class LogisticController extends Controller
      */
     public function index()
     {
-        $items = logistik::all();
+        $items = logistik::paginate(20);
         return view('logistics.index', ['title' => 'Logistics', 'subtitle' => 'All'], compact('items'));
     }
 
@@ -36,7 +36,18 @@ class LogisticController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $data = $request->validate([
+            'nama_barang'       => ['required', 'max:255'],
+            'quantity'          => ['required', 'integer'],
+            'satuan'            => ['required'],
+            'harga_satuan'      => ['required', 'integer'],
+            'harga_bef_pajak'   => ['required', 'integer'],
+            'harga_aft_pajak'   => ['required', 'integer']
+        ]);
+
+        logistik::create($data);
+        return redirect('logistics')->with('success', 'Logistik baru ditambahkan');
     }
 
     /**
@@ -58,7 +69,8 @@ class LogisticController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = logistik::find($id);
+        return view('logistics.edit', ['title' => 'Logistics', 'subtitle' => 'All'], compact('data'));
     }
 
     /**
@@ -68,9 +80,23 @@ class LogisticController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, logistik $logistic)
     {
-        //
+        $data = $request->validate([
+            'nama_barang'       => ['required', 'max:255'],
+            'quantity'          => ['required', 'integer'],
+            'satuan'            => ['required'],
+            'harga_satuan'      => ['required', 'integer'],
+            'harga_bef_pajak'   => ['required', 'integer'],
+            'harga_aft_pajak'   => ['required', 'integer']
+        ]);
+
+        // $data['quantity'] = $request->quantity - $request->sisa;
+        $data['sisa'] = $request->sisa;
+        $data['saldo_akhir'] = $request->saldo_akhir;
+
+        $logistic->update($data);
+        return redirect('logistics')->with('warning', 'Logistik telah berubah');
     }
 
     /**
@@ -79,8 +105,9 @@ class LogisticController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(logistik $logistic)
     {
-        //
+        $logistic->delete();
+        return redirect('logistics')->with('danger', 'Merk telah dihapus');
     }
 }

@@ -5,30 +5,6 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
-                <div class="inner">
-                <h3>{{ $items }}</h3>
-                <p>Barang</p>
-                </div>
-                <div class="icon">
-                <i class="fas fa-box"></i>
-                </div>
-                <a href="{{ route('assets.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-success">
-                <div class="inner">
-                <h3>{{ $suppliers }}</h3>
-                <p>Suppliers</p>
-                </div>
-                <div class="icon">
-                <i class="fas fa-truck-fast"></i>
-                </div>
-                <a href="{{ route('suppliers.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <div class="col-lg-3 col-6">
             <div class="small-box bg-warning">
                 <div class="inner">
                 <h3>44</h3>
@@ -39,6 +15,30 @@
                 <i class="fas fa-truck-ramp-box"></i>
                 </div>
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+                <div class="inner">
+                <h3>{{ $items }}</h3>
+                <p>Asset UIII</p>
+                </div>
+                <div class="icon">
+                <i class="fas fa-box"></i>
+                </div>
+                <a href="{{ route('assets.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+                <div class="inner">
+                <h3>{{ $logistic }}</h3>
+                <p>Logistik</p>
+                </div>
+                <div class="icon">
+                <i class="fas fa-truck-fast"></i>
+                </div>
+                <a href="{{ route('logistics.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <div class="col-lg-3 col-6">
@@ -64,7 +64,7 @@
                 </h3>
             </div><!-- /.card-header -->
             <div class="card-body">
-                <div id="map" style="width: 1180px; height: 500px;"></div>
+                <div id="map" style="width: auto; height: 500px;"></div>
             </div><!-- /.card-body -->
         </div>
     </section>

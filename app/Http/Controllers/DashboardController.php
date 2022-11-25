@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\items;
+use App\Models\logistik;
 use App\Models\Menu;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,7 @@ class DashboardController extends Controller
         $supplier   = DB::table('suppliers')->count();
         $lokasi     = DB::table('lokasis')->count();
         $locations  = items::all();
+        $logistic   = logistik::count();
 
         $sidebar_menu = $menu->getMenu();
         return view('index', $sidebar_menu, [
@@ -23,7 +25,8 @@ class DashboardController extends Controller
             'items'     => $barang,
             'suppliers' => $supplier,
             'locations' => $locations,
-            'loc'       => $lokasi
+            'loc'       => $lokasi,
+            'logistic'  => $logistic,
         ]);
     }
 }

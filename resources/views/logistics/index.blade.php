@@ -1,3 +1,4 @@
+{{-- @dd($items); --}}
 @extends('layout.main')
 @section('container')
     <div class="card">
@@ -35,8 +36,8 @@
                         <tr>
                             <th rowspan="2" style="width: 10px">#</th>
                             <th rowspan="2">Nama Barang</th>
-                            <th rowspan="2">Satuan</th>
                             <th rowspan="2">Qty</th>
+                            <th rowspan="2">Satuan</th>
                             <th colspan="3">Harga</th>
                             <th rowspan="2">Sisa</th>
                             <th rowspan="2">Saldo Akhir</th>
@@ -49,59 +50,79 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (count($items))
-                            <td colspan="10">No data</td>
-                        @else
-                            @foreach ($items as $item)
-                                <td></td>
-                            @endforeach
-                        @endif
+                        @foreach ($items as $item)
+                        <tr>
+                            <td>{{ $items->firstItem() + $loop->index }}</td>
+                            <td>{{ $item->nama_barang }}</td>
+                            <td>{{ $item->quantity }}</td>
+                            <td>{{ $item->satuan }}</td>
+                            <td>Rp {{ $item->harga_satuan }}</td>
+                            <td>Rp {{ $item->harga_bef_pajak }}</td>
+                            <td>Rp{{ $item->harga_aft_pajak }}</td>
+                            <td>
+                                @if ($item->sisa == '')
+                                    0
+                                @else
+                                    {{ $item->sisa }}
+                                @endif
+                            </td>
+                            <td>
+                                @if ($item->saldo_akhir == '')
+                                    0
+                                @else
+                                    Rp {{ $item->saldo_akhir }}
+                                @endif
+                            </td>
+                            <td>
+                                <a class="btn btn-info" href="" data-toggle="modal" data-target="#modal-info-{{ $item->id }}"><i class="fas fa-eye"></i></a>
+                                <a class="btn btn-warning" href="/logistics/{{ $item->id }}/edit">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <form action="/logistics/{{ $item->id }}" method="post" class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="" class="btn btn-danger delete" onclick="return confirm('Are you sure want delete this asset?')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix">
-            {{-- {{ $items->links('partials.pagination') }} --}}
+            {{ $items->links('partials.pagination') }}
         </div>
     </div>
 
 
-    {{-- <div class="modal fade" id="modal-default">
+    {{-- Detail --}}
+    @foreach ($items as $item)
+    <div class="modal fade" id="modal-info-{{ $item->id }}">
         <div class="modal-dialog">
             <form action="">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Default Modal</h4>
+                        <h4 class="modal-title">Detail {{ $item->nama_barang }}</b></h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('file') is-invalid @enderror">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    @error('file')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <a href="" class="btn btn-default">
+                            Print
+                        </a>
                     </div>
                 </div>
             </form>
-            <!-- /.modal-content -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal --> --}}
+    @endforeach
 @endsection
