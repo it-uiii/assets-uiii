@@ -46,6 +46,8 @@ class LogisticController extends Controller
             'harga_aft_pajak'   => ['required', 'integer']
         ]);
 
+        $data['pajak'] = '11%';
+
         logistik::create($data);
         return redirect('logistics')->with('success', 'Logistik baru ditambahkan');
     }
@@ -92,6 +94,7 @@ class LogisticController extends Controller
         ]);
 
         // $data['quantity'] = $request->quantity - $request->sisa;
+        $data['pajak'] = '11%';
         $data['sisa'] = $request->sisa;
         $data['saldo_akhir'] = $request->saldo_akhir;
 

@@ -70,7 +70,7 @@
                         </a>
                     </li> --}}
                     @endcan
-                    {{-- @can('asset-list') --}}
+                    @can('asset-list')
                     <li class="nav-item">
                         <a href="{{ route('assets.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-cubes"></i>
@@ -79,8 +79,8 @@
                         </p>
                         </a>
                     </li>
-                    {{-- @endcan --}}
-                    {{-- @can('logistic-list') --}}
+                    @endcan
+                    @can('logistic-list')
                     <li class="nav-item">
                         <a href="{{ route('logistics.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-truck-fast"></i>
@@ -89,8 +89,8 @@
                         </p>
                         </a>
                     </li>
-                    {{-- @endcan --}}
-                    {{-- @can('supplier-list') --}}
+                    @endcan
+                    @can('supplier-list')
                     <li class="nav-item">
                         <a href="{{ route('suppliers.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-boxes-packing"></i>
@@ -99,8 +99,8 @@
                         </p>
                         </a>
                     </li>
-                    {{-- @endcan --}}
-                    {{-- @can('location-list') --}}
+                    @endcan
+                    @can('location-list')
                     <li class="nav-item">
                         <a href="{{ route('locations.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-location-pin"></i>
@@ -109,8 +109,8 @@
                         </p>
                         </a>
                     </li>
-                    {{-- @endcan --}}
-                    {{-- @can('sumber-list') --}}
+                    @endcan
+                    @can('sumber-list')
                     <li class="nav-item">
                         <a href="{{ route('sourceincome.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-heart"></i>
@@ -119,7 +119,7 @@
                         </p>
                         </a>
                     </li>
-                    {{-- @endcan --}}
+                    @endcan
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-sitemap"></i>
@@ -129,33 +129,33 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                        {{-- @can('golongan-list') --}}
+                        @can('golongan-list')
                             <li class="nav-item">
                                 <a href="{{ route('itemgroups.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Golongan Barang</p>
                                 </a>
                             </li>    
-                        {{-- @endcan --}}
-                        {{-- @can('tipeitem-list') --}}
+                        @endcan
+                        @can('tipeitem-list')
                             <li class="nav-item">
                                 <a href="{{ route('itemtypes.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Jenis Barang</p>
                                 </a>
                             </li>
-                        {{-- @endcan --}}
-                        {{-- @can('kategoritem-list') --}}
+                        @endcan
+                        @can('kategoritem-list')
                             <li class="nav-item">
                                 <a href="{{ route('itemcategories.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kelompok Barang</p>
                                 </a>
                             </li>
-                        {{-- @endcan --}}
+                        @endcan
                         </ul>
                     </li>
-                    {{-- @can('detail-list') --}}
+                    @can('detail-list')
                     <li class="nav-item">
                         <a href="{{ route('itemdetails.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-info"></i>
@@ -164,8 +164,8 @@
                         </p>
                         </a>
                     </li>
-                    {{-- @endcan --}}
-                    {{-- @can('brand-list') --}}
+                    @endcan
+                    @can('brand-list')
                     <li class="nav-item">
                         <a href="{{ route('itembrands.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-copyright"></i>
@@ -174,8 +174,8 @@
                         </p>
                         </a>
                     </li>
-                    {{-- @endcan
-                    @can('human-list') --}}
+                    @endcan
+                    {{-- @can('human-list') --}}
                     {{-- <li class="nav-item">
                         <a href="" class="nav-link">
                             <i class="nav-icon fas fa-users"></i>
