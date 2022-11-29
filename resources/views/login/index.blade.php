@@ -25,7 +25,7 @@
         <div class="col-md-7">
         <div class="mb-4 text-center">
             <img class="img-fluid" style="max-width:330px" src="{{ asset('images/gold_uiii.png') }}" alt="">
-            <p class="mb-4 mt-4">Welcome to single sign on (SSO) uiii <br> Enter your username and password</p>
+            <p class="mb-4 mt-4">Enter your username and password</p>
         </div>
         <form action="{{ route('login') }}" method="post">
             @csrf
