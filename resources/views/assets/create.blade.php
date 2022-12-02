@@ -100,7 +100,7 @@
                             <select class="form-control @error('brand_id') is-invalid @enderror" name="brand_id" required>
                                 <option value="">Choose Brand</option>
                                 @foreach ($brands as $brand)
-                                    @if (old('brand_id') == $brands->id)
+                                    @if (old('brand_id') == $brand->id)
                                         <option value="{{ $brand->id }}" selected>{{ $brand->nama_brand }}</option>
                                     @else
                                         <option value="{{ $brand->id }}">{{ $brand->nama_brand }}</option>
