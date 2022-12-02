@@ -21,7 +21,7 @@
             <div class="small-box bg-info">
                 <div class="inner">
                 <h3>{{ $items }}</h3>
-                <p>Asset UIII</p>
+                <p>Assets UIII</p>
                 </div>
                 <div class="icon">
                 <i class="fas fa-box"></i>
@@ -33,7 +33,7 @@
             <div class="small-box bg-success">
                 <div class="inner">
                 <h3>{{ $logistic }}</h3>
-                <p>Logistik</p>
+                <p>Logistics UIII</p>
                 </div>
                 <div class="icon">
                 <i class="fas fa-truck-fast"></i>
@@ -46,7 +46,7 @@
                 <div class="inner">
                 <h3>{{ $loc }}</h3>
 
-                <p>Gedung</p>
+                <p>Building</p>
                 </div>
                 <div class="icon">
                 <i class="fas fa-building-columns"></i>

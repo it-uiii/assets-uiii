@@ -59,6 +59,11 @@ class items extends Model
         return $this->belongsTo(kelompokBarang::class, 'kelompok_item_id');
     }
 
+    public function kelompokAktap()
+    {
+        return $this->belongsTo(kelompokAktap::class, 'kelompok_aktap_id');
+    }
+
     // public function supplier()
     // {
     //     return $this->belongsTo(supplier::class, 'supplier_id');

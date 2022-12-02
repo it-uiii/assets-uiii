@@ -25,7 +25,7 @@
         <div class="col-md-7">
         <div class="mb-4 text-center">
             <img class="img-fluid" style="max-width:330px" src="{{ asset('images/gold_uiii.png') }}" alt="">
-            <p class="mb-4 mt-4">
+            <p class="mb-4 mt-4 text-dark">
                 <b>General Management</b>
                 <br>
                 Enter your username and password

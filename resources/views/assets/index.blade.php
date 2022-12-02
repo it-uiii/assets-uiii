@@ -31,33 +31,43 @@
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>No Inventory</th>
-                            <th>Nama</th>
-                            <th>Total Barang</th>
+                            <th>Name</th>
+                            <th>acquisition value</th>
+                            <th>quantity</th>
+                            <th>Total</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @if (!$items->count())
+                    <tr>
+                        <td colspan="7">Data not available</td>
+                    </tr>
+                    @else
                     @foreach ($items as $item)
-                        <tr>
-                            <td>{{ $items->firstItem() + $loop->index }}</td>
-                            <td>{{ $item->no_inventory }}</td>
-                            <td>{{ $item->nama_barang }}</td>
-                            <td class="text-center">{{ $item->jumlah_item }} {{ $item->ukuran_item }}</td>
-                            <td>
-                                <a class="btn btn-info" href="" data-toggle="modal" data-target="#modal-info-{{ $item->id }}"><i class="fas fa-eye"></i></a>
-                                <a class="btn btn-warning" href="/assets/{{ $item->id }}/edit">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <form action="/assets/{{ $item->id }}" method="post" class="d-inline">
-                                    @method('delete')
-                                    @csrf
-                                    <button type="" class="btn btn-danger delete" onclick="return confirm('Are you sure want delete this asset?')">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>{{ $items->firstItem() + $loop->index }}</td>
+                        <td>{{ $item->no_inventory }}</td>
+                        <td>{{ $item->nama_barang }}</td>
+                        <td>{{ $item->nilai_perolehan }}</td>
+                        <td class="text-center">{{ $item->jumlah_item }}</td>
+                        <td>{{ $item->total }}</td>
+                        <td>
+                            <a class="btn btn-info" href="" data-toggle="modal" data-target="#modal-info-{{ $item->id }}"><i class="fas fa-eye"></i></a>
+                            <a class="btn btn-warning" href="/assets/{{ $item->id }}/edit">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <form action="/assets/{{ $item->id }}" method="post" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button type="" class="btn btn-danger delete" onclick="return confirm('Are you sure want delete this asset?')">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
                     @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>

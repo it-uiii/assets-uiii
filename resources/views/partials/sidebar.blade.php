@@ -75,7 +75,7 @@
                         <a href="{{ route('assets.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-cubes"></i>
                         <p>
-                            Data Barang
+                            Inventory
                         </p>
                         </a>
                     </li>
@@ -85,7 +85,7 @@
                         <a href="{{ route('logistics.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-truck-fast"></i>
                         <p>
-                            Logistik
+                            Logistics
                         </p>
                         </a>
                     </li>
@@ -105,7 +105,7 @@
                         <a href="{{ route('locations.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-location-pin"></i>
                         <p>
-                            Lokasi
+                            Location
                         </p>
                         </a>
                     </li>
@@ -115,7 +115,7 @@
                         <a href="{{ route('sourceincome.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-heart"></i>
                         <p>
-                            Sumber Perolehan
+                            Source of Acquisition
                         </p>
                         </a>
                     </li>
@@ -124,7 +124,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-sitemap"></i>
                             <p>
-                                Kategori Barang
+                                Goods Category
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -133,7 +133,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('itemgroups.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Golongan Barang</p>
+                                <p>Goods Class</p>
                                 </a>
                             </li>    
                         @endcan
@@ -141,7 +141,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('itemtypes.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Jenis Barang</p>
+                                <p>Types of goods</p>
                                 </a>
                             </li>
                         @endcan
@@ -149,7 +149,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('itemcategories.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Kelompok Barang</p>
+                                <p>Goods Group</p>
                                 </a>
                             </li>
                         @endcan
@@ -160,7 +160,7 @@
                         <a href="{{ route('itemdetails.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-info"></i>
                         <p>
-                            Detail Barang
+                            Item Details
                         </p>
                         </a>
                     </li>
@@ -170,7 +170,7 @@
                         <a href="{{ route('itembrands.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-copyright"></i>
                         <p>
-                            Brand Barang
+                            Goods Brands
                         </p>
                         </a>
                     </li>
