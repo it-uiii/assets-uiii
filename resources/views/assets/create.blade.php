@@ -114,7 +114,7 @@
                                     required>
                                     <option value="">Choose Brand</option>
                                     @foreach ($brands as $brand)
-                                        @if (old('brand_id') == $brands->id)
+                                        @if (old('brand_id') == $brand->id)
                                             <option value="{{ $brand->id }}" selected>{{ $brand->nama_brand }}</option>
                                         @else
                                             <option value="{{ $brand->id }}">{{ $brand->nama_brand }}</option>
@@ -203,11 +203,19 @@
                             <div class="col-sm-10">
                                 <select class="form-control @error('lokasi_id') is-invalid @enderror" name="lokasi_id"
                                     id="lokasi" required onchange="getOptionAttr()">
-                                    <option value="" disabled selected>Choose Lokasi</option>
+                                    <option value="" disabled>Choose Lokasi</option>
                                     @foreach ($areas as $area)
-                                        <option value="{{ $area->id }}.{{ $area->kode_lokasi }}"
-                                            data-lokasi="{{ $area->kode_lokasi }}">{{ $area->lokasi }} -
-                                            {{ $area->kode_lokasi }}</option>
+                                    @if (old('lokasi_id') == $area->id)
+                                    <option value="{{ $area->id }}.{{ $area->kode_lokasi }}"
+                                        data-lokasi="{{ $area->kode_lokasi }}" selected>{{ $area->lokasi }} -
+                                        {{ $area->kode_lokasi }}
+                                    </option>
+                                    @else
+                                    <option value="{{ $area->id }}.{{ $area->kode_lokasi }}"
+                                        data-lokasi="{{ $area->kode_lokasi }}">{{ $area->lokasi }} -
+                                        {{ $area->kode_lokasi }}
+                                    </option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 @error('lokasi_id')
@@ -222,11 +230,19 @@
                             <div class="col-sm-10">
                                 <select class="form-control @error('sumber_perolehan_id') is-invalid @enderror"
                                     name="sumber_perolehan_id" id="sumber_perolehan" required onchange="getOptionAttr()">
-                                    <option value="" disabled selected>Choose Sumber Perolehan</option>
+                                    <option value="" disabled>Choose Sumber Perolehan</option>
                                     @foreach ($sumbers as $sumber)
-                                        <option value="{{ $sumber->id }}.{{ $sumber->kode_sumber }}"
-                                            data-sumber="{{ $sumber->kode_sumber }}">{{ $sumber->sumber }} -
-                                            {{ $sumber->kode_sumber }}</option>
+                                    @if (old('sumber_perolehan_id') == $sumber->id)
+                                    <option value="{{ $sumber->id }}.{{ $sumber->kode_sumber }}"
+                                        data-sumber="{{ $sumber->kode_sumber }}" selected>{{ $sumber->sumber }} -
+                                        {{ $sumber->kode_sumber }}
+                                    </option>
+                                    @else
+                                    <option value="{{ $sumber->id }}.{{ $sumber->kode_sumber }}"
+                                        data-sumber="{{ $sumber->kode_sumber }}">{{ $sumber->sumber }} -
+                                        {{ $sumber->kode_sumber }}
+                                    </option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 @error('sumber_perolehan_id')
@@ -241,11 +257,19 @@
                             <div class="col-sm-10">
                                 <select class="form-control @error('golongan_item_id') is-invalid @enderror"
                                     name="golongan_item_id" id="golongan_item" required onchange="getOptionAttr()">
-                                    <option value="" disabled selected>Choose Golongan Barang</option>
+                                    <option value="" disabled>Choose Golongan Barang</option>
                                     @foreach ($golongans as $golongan)
-                                        <option value="{{ $golongan->id }}.{{ $golongan->kode_golongan }}"
-                                            data-golongan="{{ $golongan->kode_golongan }}">{{ $golongan->nama_golongan }}
-                                            - {{ $golongan->kode_golongan }}</option>
+                                    @if (old('golongan_id') == $golongan->id)
+                                    <option value="{{ $golongan->id }}.{{ $golongan->kode_golongan }}"
+                                        data-golongan="{{ $golongan->kode_golongan }}" selected>{{ $golongan->nama_golongan }}
+                                        - {{ $golongan->kode_golongan }}
+                                    </option>
+                                    @else
+                                    <option value="{{ $golongan->id }}.{{ $golongan->kode_golongan }}"
+                                        data-golongan="{{ $golongan->kode_golongan }}">{{ $golongan->nama_golongan }}
+                                        - {{ $golongan->kode_golongan }}
+                                    </option>   
+                                    @endif
                                     @endforeach
                                 </select>
                                 @error('golongan_item_id')
@@ -260,11 +284,19 @@
                             <div class="col-sm-10">
                                 <select class="form-control @error('jenis_item_id') is-invalid @enderror"
                                     name="jenis_item_id" id="jenis_item" required onchange="getOptionAttr()">
-                                    <option value="" disabled selected>Choose Jenis Barang</option>
+                                    <option value="" disabled>Choose Jenis Barang</option>
                                     @foreach ($tipes as $tipe)
-                                        <option value="{{ $tipe->id }}.{{ $tipe->kode_tipe }}"
-                                            data-tipe="{{ $tipe->kode_tipe }}">{{ $tipe->nama_tipe }} -
-                                            {{ $tipe->kode_tipe }}</option>
+                                    @if (old('jenis_item_id') == $tipe->id)
+                                    <option value="{{ $tipe->id }}.{{ $tipe->kode_tipe }}"
+                                        data-tipe="{{ $tipe->kode_tipe }}">{{ $tipe->nama_tipe }} -
+                                        {{ $tipe->kode_tipe }}
+                                    </option>
+                                    @else
+                                    <option value="{{ $tipe->id }}.{{ $tipe->kode_tipe }}"
+                                        data-tipe="{{ $tipe->kode_tipe }}" selected>{{ $tipe->nama_tipe }} -
+                                        {{ $tipe->kode_tipe }}
+                                    </option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 @error('jenis_item_id')
@@ -279,11 +311,19 @@
                             <div class="col-sm-10">
                                 <select class="form-control @error('kelompok_item_id') is-invalid @enderror"
                                     name="kelompok_item_id" id="kelompok_item" required onchange="getOptionAttr()">
-                                    <option value="" disabled selected>Choose Kelompok Barang</option>
+                                    <option value="" disabled>Choose Kelompok Barang</option>
                                     @foreach ($kelompoks as $kelompok)
-                                        <option value="{{ $kelompok->id }}.{{ $kelompok->kode_kelompok }}"
-                                            data-kelompok="{{ $kelompok->kode_kelompok }}">{{ $kelompok->nama_kelompok }}
-                                            - {{ $kelompok->kode_kelompok }}</option>
+                                    @if (old('kelompok_item_id') == $kelompok->id)
+                                    <option value="{{ $kelompok->id }}.{{ $kelompok->kode_kelompok }}"
+                                        data-kelompok="{{ $kelompok->kode_kelompok }}" selected>{{ $kelompok->nama_kelompok }}
+                                        - {{ $kelompok->kode_kelompok }}
+                                    </option>
+                                    @else
+                                    <option value="{{ $kelompok->id }}.{{ $kelompok->kode_kelompok }}"
+                                        data-kelompok="{{ $kelompok->kode_kelompok }}">{{ $kelompok->nama_kelompok }}
+                                        - {{ $kelompok->kode_kelompok }}
+                                    </option>  
+                                    @endif
                                     @endforeach
                                 </select>
                                 @error('kelompok_item_id')
@@ -298,11 +338,19 @@
                             <div class="col-sm-10">
                                 <select class="form-control @error('detailbarang_id') is-invalid @enderror"
                                     name="detailbarang_id" id="detailbarang" required onchange="getOptionAttr()">
-                                    <option value="" disabled selected>Choose barang</option>
+                                    <option value="" disabled>Choose barang</option>
                                     @foreach ($details as $detail)
-                                        <option value="{{ $detail->id }}.{{ $detail->seq_number }}"
-                                            data-sequence="{{ $detail->seq_number }}">{{ $detail->detail_barang }} -
-                                            {{ $detail->seq_number }}</option>
+                                    @if (old('detailbarang_id') == $detail->id)
+                                    <option value="{{ $detail->id }}.{{ $detail->seq_number }}"
+                                        data-sequence="{{ $detail->seq_number }}" selected>{{ $detail->detail_barang }} -
+                                        {{ $detail->seq_number }}
+                                    </option>
+                                    @else
+                                    <option value="{{ $detail->id }}.{{ $detail->seq_number }}"
+                                        data-sequence="{{ $detail->seq_number }}">{{ $detail->detail_barang }} -
+                                        {{ $detail->seq_number }}
+                                    </option>  
+                                    @endif
                                     @endforeach
                                 </select>
                                 @error('detailbarang_id')

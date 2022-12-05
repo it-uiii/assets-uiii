@@ -60,7 +60,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Create</button>
-                    <a href="/assets" class="btn btn-danger">Kembali</a>
+                    <a href="/logistics" class="btn btn-danger">Kembali</a>
                 </div>
             </div>
         </div>

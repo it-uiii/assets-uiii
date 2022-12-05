@@ -41,7 +41,7 @@
                     <tbody>
                     @if (!$items->count())
                     <tr>
-                        <td colspan="7">Data not available</td>
+                        <td colspan="7" class="text-center">Data not available</td>
                     </tr>
                     @else
                     @foreach ($items as $item)
