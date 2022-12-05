@@ -49,13 +49,11 @@
     @yield('styles')
     <!-- Leaflet-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-    crossorigin=""/>
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-        crossorigin=""></script>
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -220,6 +218,29 @@
             $('#compose-textarea').summernote()
 
         });
+
+        function getOptionAttr() {
+            var input_no_inventory = $('#no_inventory')
+
+            function getData(selectId, data) {
+                var data_attr = $('#' + selectId).find('option:selected').attr(data)
+                if (data_attr) {
+                    return '.' + data_attr.toString()
+                } else {
+                    return '';
+                }
+            }
+            var option_lokasi = getData('lokasi', 'data-lokasi')
+            var option_sumber = getData('sumber_perolehan', 'data-sumber')
+            var option_golongan = getData('golongan_item', 'data-golongan')
+            var option_tipe = getData('jenis_item', 'data-tipe')
+            var option_kelompok = getData('kelompok_item', 'data-kelompok')
+            var option_sequence = getData('detailbarang', 'data-sequence')
+            var result = 'UIII' + option_lokasi + option_sumber + option_golongan + option_tipe + option_kelompok +
+                option_sequence;
+
+            input_no_inventory.val(result)
+        }
     </script>
 
     @if (session('success'))

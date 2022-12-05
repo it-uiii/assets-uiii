@@ -31,9 +31,7 @@
                         <div>
                             <select class="form-control @error('satuan') is-invalid @enderror" name="satuan" required>
                                 <option value="">Pilih</option>
-                                <option value="Unit">Unit</option>
-                                <option value="Set">set</option>
-                                <option value="Pack">Pack</option>
+                                <option value="Pack">Box</option>
                                 <option value="Pcs">Pcs</option>
                             </select>
                             @error('satuan')
@@ -60,7 +58,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Create</button>
-                    <a href="/assets" class="btn btn-danger">Kembali</a>
+                    <a href="/logistics" class="btn btn-danger">Kembali</a>
                 </div>
             </div>
         </div>
