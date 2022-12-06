@@ -32,9 +32,12 @@
                             <th style="width: 10px">#</th>
                             <th>No Inventory</th>
                             <th>Name</th>
+                            <th>Location Item</th>
+                            <th>Division Budget</th>
                             <th>acquisition value</th>
                             <th>quantity</th>
                             <th>Total</th>
+                            <th>depreciation value</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -49,9 +52,12 @@
                         <td>{{ $items->firstItem() + $loop->index }}</td>
                         <td>{{ $item->no_inventory }}</td>
                         <td>{{ $item->nama_barang }}</td>
-                        <td>{{ $item->nilai_perolehan }}</td>
+                        <td>{{ $item->lokasi->lokasi }}</td>
+                        <td>{{ $item->pp->nama_pp }}</td>
+                        <td>@idr($item->nilai_perolehan)</td>
                         <td class="text-center">{{ $item->jumlah_item }}</td>
-                        <td>{{ $item->total }}</td>
+                        <td>@idr($item->total)</td>
+                        <td>{{ $item->nilai_penyusutan }}</td>
                         <td>
                             <a class="btn btn-info" href="" data-toggle="modal" data-target="#modal-info-{{ $item->id }}"><i class="fas fa-eye"></i></a>
                             <a class="btn btn-warning" href="/assets/{{ $item->id }}/edit">

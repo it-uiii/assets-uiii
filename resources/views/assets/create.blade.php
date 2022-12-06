@@ -3,14 +3,14 @@
     <form class="form-horizontal" action="/assets" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <div class="col">
+            <div class="col-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Input barang</h3>
+                        <h3 class="card-title">Input item</h3>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="nm_barang" class="col-sm-2 col-form-label">Nama Barang</label>
+                            <label for="nm_barang" class="col-sm-2 col-form-label">Item name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control @error('nama_barang') is-invalid @enderror"
                                     name="nama_barang" id="nm_barang" autofocus autocomplete="off"
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Nilai Perolehan</label>
+                            <label class="col-sm-2 col-form-label">Acquisition value</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control @error('nilai_perolehan') is-invalid @enderror"
                                     name="nilai_perolehan" value="{{ old('nilai_perolehan') }}" id="nilai_perolehan"
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Jumlah Barang</label>
+                            <label class="col-sm-2 col-form-label">Quantity</label>
                             <div class="col-sm-1">
                                 <input type="number" class="form-control @error('jumlah_item') is-invalid @enderror"
                                     name="jumlah_item" value="{{ old('jumlah_item') }}" id="jumlah_item" required>
@@ -60,19 +60,19 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kelompok Aktap</label>
+                            <label class="col-sm-2 col-form-label">Fixed asset group</label>
                             <div class="col-sm-10">
                                 <select class="form-control @error('kelompok_aktap_id') is-invalid @enderror"
                                     name="kelompok_aktap_id" id="kelompok_aktap" required>
-                                    <option value="">Choose Aktap</option>
+                                    <option value="">Choose Fixed asset</option>
                                     @foreach ($aktap as $item)
                                         @if (old('kelompok_aktap_id') == $item->id)
                                             <option value="{{ $item->id }}" data-year="{{ $item->tahun }}"
-                                                data-month={{ $item->bulan }} selected>{{ $item->nama_pp }} -
+                                                data-month={{ $item->bulan }} selected>{{ $item->nama_aktap }} -
                                                 {{ $item->kode }}</option>
                                         @else
                                             <option value="{{ $item->id }}" data-year="{{ $item->tahun }}"
-                                                data-month={{ $item->bulan }}>{{ $item->nama_pp }} - {{ $item->kode }}
+                                                data-month={{ $item->bulan }}>{{ $item->nama_aktap }} - {{ $item->kode }}
                                             </option>
                                         @endif
                                     @endforeach
@@ -85,18 +85,39 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Umur [Bulan]</label>
+                            <label class="col-sm-2 col-form-label">Age [Month]</label>
                             <div class="col-sm-3">
                                 <input class="form-control" type="text" id="bulan" readonly>
                             </div>
-                            <label class="col-form-label">% Susut [Tahun]</label>
+                            <label class="col-form-label">% Shrink [Year]</label>
                             <div class="col-sm-5">
                                 <input class="form-control" type="text" id="umur_penyusutan" name="umur_penyusutan"
                                     readonly>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Tanggal Perolehan</label>
+                            <label class="col-sm-2 col-form-label">Budget division</label>
+                            <div class="col-sm-10">
+                                <select class="form-control @error('data_unit_id') is-invalid @enderror" name="data_unit_id"
+                                    required>
+                                    <option value="">Choose division</option>
+                                    @foreach ($units as $unit)
+                                        @if (old('data_unit_id') == $unit->id)
+                                            <option value="{{ $unit->id }}" selected>{{ $unit->nama_pp }}</option>
+                                        @else
+                                            <option value="{{ $unit->id }}">{{ $unit->nama_pp }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('data_unit_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Date of acquisition</label>
                             <div class="col-sm-10">
                                 <input type="date" class="form-control @error('tanggal_invoice') is-invalid @enderror"
                                     name="tanggal_invoice" value="{{ old('tanggal_invoice') }}" required>
@@ -107,27 +128,6 @@
                                 @enderror
                             </div>
                         </div>
-<<<<<<< HEAD
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Brand</label>
-                        <div class="col-sm-10">
-                            <select class="form-control @error('brand_id') is-invalid @enderror" name="brand_id" required>
-                                <option value="">Choose Brand</option>
-                                @foreach ($brands as $brand)
-                                    @if (old('brand_id') == $brand->id)
-                                        <option value="{{ $brand->id }}" selected>{{ $brand->nama_brand }}</option>
-                                    @else
-                                        <option value="{{ $brand->id }}">{{ $brand->nama_brand }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            @error('brand_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-=======
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Brand</label>
                             <div class="col-sm-10">
@@ -148,10 +148,9 @@
                                     </div>
                                 @enderror
                             </div>
->>>>>>> mitsuki
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Keterangan</label>
+                            <label class="col-sm-2 col-form-label">Description</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" id="keterangan" name="keterangan">
                                 {!! old('keterangan') !!}
@@ -165,7 +164,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Upload Gambar</label>
+                            <label class="col-sm-2 col-form-label">Upload Image</label>
                             <div class="col-sm-10">
                                 <div class="custom-file">
                                     <input type="file" multiple class="custom-file-input" id="image"
@@ -181,7 +180,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Stock Barang</label>
+                            <label class="col-sm-2 col-form-label">Stock item</label>
                             <div class="col-sm-2">
                                 <select class="form-control @error('stock') is-invalid @enderror" name="stock">
                                     <option value="">Choose Status</option>
@@ -197,8 +196,8 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Tambah</button>
-                        <a href="/assets" class="btn btn-danger">Kembali</a>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <a href="/assets" class="btn btn-danger">Back</a>
                     </div>
                 </div>
             </div>
@@ -221,11 +220,11 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Lokasi</label>
+                            <label class="col-sm-2 col-form-label">Location</label>
                             <div class="col-sm-10">
                                 <select class="form-control @error('lokasi_id') is-invalid @enderror" name="lokasi_id"
                                     id="lokasi" required onchange="getOptionAttr()">
-                                    <option value="" disabled>Choose Lokasi</option>
+                                    <option value="">Choose location</option>
                                     @foreach ($areas as $area)
                                     @if (old('lokasi_id') == $area->id)
                                     <option value="{{ $area->id }}.{{ $area->kode_lokasi }}"
@@ -248,11 +247,11 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Sumber Perolehan</label>
+                            <label class="col-sm-2 col-form-label">Source of Acquisition</label>
                             <div class="col-sm-10">
                                 <select class="form-control @error('sumber_perolehan_id') is-invalid @enderror"
                                     name="sumber_perolehan_id" id="sumber_perolehan" required onchange="getOptionAttr()">
-                                    <option value="" disabled>Choose Sumber Perolehan</option>
+                                    <option value="">Choose Source of Acquisition</option>
                                     @foreach ($sumbers as $sumber)
                                     @if (old('sumber_perolehan_id') == $sumber->id)
                                     <option value="{{ $sumber->id }}.{{ $sumber->kode_sumber }}"
@@ -275,11 +274,11 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Golongan Barang</label>
+                            <label class="col-sm-2 col-form-label">Item Class</label>
                             <div class="col-sm-10">
                                 <select class="form-control @error('golongan_item_id') is-invalid @enderror"
                                     name="golongan_item_id" id="golongan_item" required onchange="getOptionAttr()">
-                                    <option value="" disabled>Choose Golongan Barang</option>
+                                    <option value="">Choose Item Class</option>
                                     @foreach ($golongans as $golongan)
                                     @if (old('golongan_id') == $golongan->id)
                                     <option value="{{ $golongan->id }}.{{ $golongan->kode_golongan }}"
@@ -302,20 +301,20 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Jenis Barang</label>
+                            <label class="col-sm-2 col-form-label">Item type</label>
                             <div class="col-sm-10">
                                 <select class="form-control @error('jenis_item_id') is-invalid @enderror"
                                     name="jenis_item_id" id="jenis_item" required onchange="getOptionAttr()">
-                                    <option value="" disabled>Choose Jenis Barang</option>
+                                    <option value="">Choose Item type</option>
                                     @foreach ($tipes as $tipe)
                                     @if (old('jenis_item_id') == $tipe->id)
                                     <option value="{{ $tipe->id }}.{{ $tipe->kode_tipe }}"
-                                        data-tipe="{{ $tipe->kode_tipe }}">{{ $tipe->nama_tipe }} -
+                                        data-tipe="{{ $tipe->kode_tipe }}" selected>{{ $tipe->nama_tipe }} -
                                         {{ $tipe->kode_tipe }}
                                     </option>
                                     @else
                                     <option value="{{ $tipe->id }}.{{ $tipe->kode_tipe }}"
-                                        data-tipe="{{ $tipe->kode_tipe }}" selected>{{ $tipe->nama_tipe }} -
+                                        data-tipe="{{ $tipe->kode_tipe }}">{{ $tipe->nama_tipe }} -
                                         {{ $tipe->kode_tipe }}
                                     </option>
                                     @endif
@@ -329,11 +328,11 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Kelompok Barang</label>
+                            <label class="col-sm-2 col-form-label">Item group</label>
                             <div class="col-sm-10">
                                 <select class="form-control @error('kelompok_item_id') is-invalid @enderror"
                                     name="kelompok_item_id" id="kelompok_item" required onchange="getOptionAttr()">
-                                    <option value="" disabled>Choose Kelompok Barang</option>
+                                    <option value="">Choose Item group</option>
                                     @foreach ($kelompoks as $kelompok)
                                     @if (old('kelompok_item_id') == $kelompok->id)
                                     <option value="{{ $kelompok->id }}.{{ $kelompok->kode_kelompok }}"
@@ -356,11 +355,11 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Detail Barang</label>
+                            <label class="col-sm-2 col-form-label">Detail item</label>
                             <div class="col-sm-10">
                                 <select class="form-control @error('detailbarang_id') is-invalid @enderror"
                                     name="detailbarang_id" id="detailbarang" required onchange="getOptionAttr()">
-                                    <option value="" disabled>Choose barang</option>
+                                    <option value="">Choose detail item</option>
                                     @foreach ($details as $detail)
                                     @if (old('detailbarang_id') == $detail->id)
                                     <option value="{{ $detail->id }}.{{ $detail->seq_number }}"
@@ -405,7 +404,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </form>
 
 

@@ -8,6 +8,7 @@ use App\Models\lokasi;
 use App\Models\sumber;
 use App\Models\golongan;
 use App\Models\brandItem;
+use App\Models\dataUnit;
 use App\Models\detailbarang;
 use App\Models\kelompokAktap;
 use Illuminate\Http\Request;
@@ -64,6 +65,7 @@ class ItemsManagementController extends Controller
         $brands     = brandItem::all();
         $details    = detailbarang::all();
         $aktap      = kelompokAktap::all();
+        $units      = dataUnit::all();
         return view(
             'assets.create',
             ['title' => 'Assets', 'subtitle' => 'Create'],
@@ -75,7 +77,8 @@ class ItemsManagementController extends Controller
                 'kelompoks',
                 'brands',
                 'details',
-                'aktap'
+                'aktap',
+                'units'
             )
         );
     }
@@ -97,6 +100,7 @@ class ItemsManagementController extends Controller
             // 'ukuran_item'           => ['required'],
             'tanggal_invoice'       => ['required', 'date'],
             'kelompok_aktap_id'     => ['required'],
+            'data_unit_id'          => ['required'],
             'lokasi_id'             => ['required'],
             'sumber_perolehan_id'   => ['required'],
             'golongan_item_id'      => ['required'],
@@ -164,6 +168,7 @@ class ItemsManagementController extends Controller
         // $data['ukuran_item'] = $request->ukuran_item;
         $data['total']              = $request->total;
         $data['kelompok_aktap_id']  = $request->kelompok_aktap_id;
+        $data['data_unit_id']       = $request->data_unit_id;
         $data['brand_id']           = $request->brand_id;
         $data['keterangan']         = $request->keterangan;
         $data['umur_penyusutan']    = $request->umur_penyusutan;
@@ -171,6 +176,7 @@ class ItemsManagementController extends Controller
         $data['tanggal_invoice']    = $request->tanggal_invoice;
         $data['user_id']            = auth()->user()->id;
         $data['no_inventory']       = 'UIII' . $kode_lokasi . $kode_sumber . $kode_golongan . $kode_jenis . $kode_kelompok . $year . $seq_number;
+        // $data['nilai_penyusutan']   = $request->total * $request->umur_penyusutan;
 
         // dd($data);
         items::create($data);
@@ -197,13 +203,15 @@ class ItemsManagementController extends Controller
      */
     public function edit(items $items, $id)
     {
-        $areas = lokasi::all();
-        $sumbers = sumber::all();
-        $golongans = golongan::all();
-        $tipes = tipe::all();
-        $kelompoks = kelompokBarang::all();
-        $brands = brandItem::all();
-        $details = detailbarang::all();
+        $areas      = lokasi::all();
+        $sumbers    = sumber::all();
+        $golongans  = golongan::all();
+        $tipes      = tipe::all();
+        $kelompoks  = kelompokBarang::all();
+        $brands     = brandItem::all();
+        $details    = detailbarang::all();
+        $aktap      = kelompokAktap::all();
+        $units      = dataUnit::all();
         $data = items::find($id);
         return view('assets.edit', ['title' => 'Asset', 'subtitle' => 'Edit'], compact(
             'areas',
@@ -213,6 +221,8 @@ class ItemsManagementController extends Controller
             'kelompoks',
             'brands',
             'details',
+            'aktap',
+            'units',
             'data'
         ));
     }
@@ -230,7 +240,7 @@ class ItemsManagementController extends Controller
             'nama_barang' => 'required|string|max:255',
             'nilai_perolehan' => 'required|max:255',
             'jumlah_item' => 'required',
-            'ukuran_item' => 'required',
+            // 'ukuran_item' => 'required',
             'tanggal_invoice' => 'required|date',
             'lokasi_id' => 'required',
             'sumber_perolehan_id' => 'required',
@@ -294,16 +304,19 @@ class ItemsManagementController extends Controller
         $myDate = date('Y');
         $year = substr($myDate, 2);
 
-        $data['nama_barang'] = $request->nama_barang;
-        $data['nilai_perolehan'] = $request->nilai_perolehan;
-        $data['ukuran_item'] = $request->ukuran_item;
-        $data['brand_id'] = $request->brand_id;
-        $data['keterangan'] = $request->keterangan;
-        $data['umur_penyusutan'] = $request->umur_penyusutan;
-        $data['stock'] = $request->stock;
-        $data['tanggal_invoice'] = $request->tanggal_invoice;
-        $data['user_id'] = auth()->user()->id;
-        $data['no_inventory'] = 'UIII' . $kode_lokasi . $kode_sumber . $kode_golongan . $kode_jenis . $kode_kelompok . $year . $seq_number;
+        $data['nama_barang']        = $request->nama_barang;
+        $data['nilai_perolehan']    = $request->nilai_perolehan;
+        // $data['ukuran_item'] = $request->ukuran_item;
+        $data['total']              = $request->total;
+        $data['kelompok_aktap_id']  = $request->kelompok_aktap_id;
+        $data['data_unit_id']       = $request->data_unit_id;
+        $data['brand_id']           = $request->brand_id;
+        $data['keterangan']         = $request->keterangan;
+        $data['umur_penyusutan']    = $request->umur_penyusutan;
+        $data['stock']              = $request->stock;
+        $data['tanggal_invoice']    = $request->tanggal_invoice;
+        $data['user_id']            = auth()->user()->id;
+        $data['no_inventory']       = 'UIII' . $kode_lokasi . $kode_sumber . $kode_golongan . $kode_jenis . $kode_kelompok . $year . $seq_number;
 
         $asset->update($data);
         return redirect()->route('assets.index')

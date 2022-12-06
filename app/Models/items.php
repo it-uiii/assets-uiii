@@ -64,6 +64,11 @@ class items extends Model
         return $this->belongsTo(kelompokAktap::class, 'kelompok_aktap_id');
     }
 
+    public function pp()
+    {
+        return $this->belongsTo(dataUnit::class, 'data_unit_id');
+    }
+
     // public function supplier()
     // {
     //     return $this->belongsTo(supplier::class, 'supplier_id');

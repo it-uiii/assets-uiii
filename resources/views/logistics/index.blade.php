@@ -39,6 +39,8 @@
                             <th rowspan="2">Qty</th>
                             <th rowspan="2">Satuan</th>
                             <th colspan="3">Harga</th>
+                            <th rowspan="2">Quartal</th>
+                            <th rowspan="2">Tahun</th>
                             <th rowspan="2">Sisa</th>
                             <th rowspan="2">Saldo Akhir</th>
                             <th rowspan="2">Action</th>
@@ -59,6 +61,8 @@
                             <td>Rp {{ $item->harga_satuan }}</td>
                             <td>Rp {{ $item->harga_bef_pajak }}</td>
                             <td>Rp{{ $item->harga_aft_pajak }}</td>
+                            <td></td>
+                            <td></td>
                             <td>
                                 @if ($item->sisa == '')
                                     0
