@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Quantity</label>
-                            <div class="col-sm-1">
+                            <div class="col-sm-2">
                                 <input type="number" class="form-control @error('jumlah_item') is-invalid @enderror"
                                     name="jumlah_item" value="{{ old('jumlah_item') }}" id="jumlah_item" required>
                                 @error('jumlah_item')
