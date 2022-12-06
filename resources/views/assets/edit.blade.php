@@ -4,7 +4,7 @@
         @csrf
         @method('put')
         <div class="row">
-            <div class="col-6">
+            <div class="col-5">
                 <div class="card card-warning">
                     <div class="card-header">
                         <h3 class="card-title">Input item</h3>
