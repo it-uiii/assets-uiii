@@ -52,8 +52,20 @@
                         <td>{{ $items->firstItem() + $loop->index }}</td>
                         <td>{{ $item->no_inventory }}</td>
                         <td>{{ $item->nama_barang }}</td>
-                        <td>{{ $item->lokasi->lokasi }}</td>
-                        <td>{{ $item->pp->nama_pp }}</td>
+                        <td>
+                            @if (empty($item->lokasi->lokasi))
+                                -
+                            @else
+                            {{ $item->lokasi->lokasi }}    
+                            @endif
+                        </td>
+                        <td>
+                            @if (empty($item->pp->nama_pp))
+                                -
+                            @else
+                            {{ $item->pp->nama_pp }}
+                            @endif
+                        </td>
                         <td>@idr($item->nilai_perolehan)</td>
                         <td class="text-center">{{ $item->jumlah_item }}</td>
                         <td>@idr($item->total)</td>
