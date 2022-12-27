@@ -21,7 +21,7 @@
             <div class="small-box bg-info">
                 <div class="inner">
                 <h3>{{ $items }}</h3>
-                <p>Assets UIII</p>
+                <p>Inventory UIII</p>
                 </div>
                 <div class="icon">
                 <i class="fas fa-box"></i>

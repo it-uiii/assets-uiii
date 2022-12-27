@@ -152,9 +152,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Description</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="keterangan" name="keterangan">
-                                {!! old('keterangan') !!}
-                            </textarea>
+                                <textarea class="form-control" id="keterangan" name="keterangan">{!! old('keterangan') !!}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -396,9 +394,21 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="mt-2" id="map" name="map"
-                                            style="width: 600px; height: 400px;"></div>
+                                            style="width: 550px; height: 400px;"></div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nm_barang" class="col-sm-2 col-form-label">Floor</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="lantai" value="{{ old('ruangan') }}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nm_barang" class="col-sm-2 col-form-label">Room</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="ruangan" value="{{ old('ruangan') }}" required>
                             </div>
                         </div>
                     </div>
@@ -443,7 +453,7 @@
         $(document).ready(function() {
             $("#keterangan").summernote({
                 height: 200,
-                placeholder: 'Masukkan Deskripsi',
+                placeholder: 'Enter Description, name PIC etc',
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],

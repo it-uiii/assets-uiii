@@ -4,7 +4,7 @@
         @csrf
         @method('put')
         <div class="row">
-            <div class="col-5">
+            <div class="col-6">
                 <div class="card card-warning">
                     <div class="card-header">
                         <h3 class="card-title">Input item</h3>
@@ -15,7 +15,7 @@
                             <div class="col-sm-10">
                                 <input type="text" class="form-control @error('nama_barang') is-invalid @enderror"
                                     name="nama_barang" id="nm_barang" autofocus autocomplete="off"
-                                    value="{{ old('nama_barang', $data->nama_barang) }}" required>
+                                    value="{{ old('nama_barang', $data->nama_barang) }}" readonly>
                                 @error('nama_barang')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Quantity</label>
-                            <div class="col-sm-1">
+                            <div class="col-sm-2">
                                 <input type="number" class="form-control @error('jumlah_item') is-invalid @enderror"
                                     name="jumlah_item" value="{{ old('jumlah_item', $data->jumlah_item) }}" id="jumlah_item" required readonly>
                                 @error('jumlah_item')
@@ -88,11 +88,11 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Age [Month]</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="text" id="bulan" readonly>
+                                <input class="form-control" type="text" id="bulan" value="{{ $data->kelompokAktap->bulan }}" readonly>
                             </div>
                             <label class="col-form-label">% Shrink [Year]</label>
                             <div class="col-sm-5">
-                                <input class="form-control" type="text" id="umur_penyusutan" name="umur_penyusutan"
+                                <input class="form-control" type="text" id="umur_penyusutan" name="umur_penyusutan" value="{{ $data->kelompokAktap->tahun }}"
                                     readonly>
                             </div>
                         </div>
@@ -202,7 +202,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-6">
                 <div class="card card-warning">
                     <div class="card-header">
                         <h3 class="card-title">No Inventory</h3>
@@ -400,6 +400,18 @@
                                             style="width: 600px; height: 400px;"></div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nm_barang" class="col-sm-2 col-form-label">Floor</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lantai" name="lantai" value="{{ old('ruangan', $data->lantai) }}" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nm_barang" class="col-sm-2 col-form-label">Room</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ruangan" name="ruangan" value="{{ old('ruangan', $data->ruangan) }}" required>
                             </div>
                         </div>
                     </div>

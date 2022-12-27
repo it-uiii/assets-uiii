@@ -28,29 +28,29 @@
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th style="width: 10px">#</th>
                             <th>No Inventory</th>
+                            <th>No Report</th>
                             <th>Name</th>
                             <th>Location Item</th>
-                            <th>Division Budget</th>
                             <th>acquisition value</th>
                             <th>quantity</th>
                             <th>Total</th>
-                            <th>depreciation value</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                     @if (!$items->count())
                     <tr>
-                        <td colspan="7" class="text-center">Data not available</td>
+                        <td colspan="9" class="text-center">Data not available</td>
                     </tr>
                     @else
                     @foreach ($items as $item)
                     <tr>
                         <td>{{ $items->firstItem() + $loop->index }}</td>
-                        <td>{{ $item->no_inventory }}</td>
+                        <td class="text-center">{{ $item->no_inventory }}</td>
+                        <td class="text-center">{{ $item->no_laporan ?? "-" }}</td>
                         <td>{{ $item->nama_barang }}</td>
                         <td>
                             @if (empty($item->lokasi->lokasi))
@@ -59,17 +59,9 @@
                             {{ $item->lokasi->lokasi }}    
                             @endif
                         </td>
-                        <td>
-                            @if (empty($item->pp->nama_pp))
-                                -
-                            @else
-                            {{ $item->pp->nama_pp }}
-                            @endif
-                        </td>
                         <td>@idr($item->nilai_perolehan)</td>
                         <td class="text-center">{{ $item->jumlah_item }}</td>
                         <td>@idr($item->total)</td>
-                        <td>{{ $item->nilai_penyusutan }}</td>
                         <td>
                             <a class="btn btn-info" href="" data-toggle="modal" data-target="#modal-info-{{ $item->id }}"><i class="fas fa-eye"></i></a>
                             <a class="btn btn-warning" href="/assets/{{ $item->id }}/edit">
@@ -98,7 +90,7 @@
     {{-- Detail --}}
     @foreach ($items as $item)
     <div class="modal fade" id="modal-info-{{ $item->id }}">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <form action="">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -108,19 +100,26 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label>QR Code</label>
-                            @php
-                                echo DNS2D::getBarcodeHTML($item->no_inventory, 'QRCODE');
-                            @endphp
-                        </div>
-                        <div class="form-group">
-                            <label>Image</label>
-                            @if (empty($item->image))
-                                No Image
-                            @else
-                                <img style="max-width: 200px" class="img-fluid" src="{{ asset(Storage::url($item->image)) }}" alt="{{ $item->image }}">
-                            @endif
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label>QR Code</label>
+                                    @php
+                                        echo DNS2D::getBarcodeHTML($item->no_inventory, 'QRCODE');
+                                    @endphp
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="form-group">
+                                    <label>Picture</label>
+                                    <br>
+                                    @if (empty($item->image))
+                                        Picture not available
+                                    @else
+                                        <img style="max-width: 200px" class="img-fluid" src="{{ asset(Storage::url($item->image)) }}" alt="{{ $item->image }}">
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Nama Barang</label>

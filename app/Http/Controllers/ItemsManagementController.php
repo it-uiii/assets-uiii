@@ -16,6 +16,7 @@ use App\Models\kelompokBarang;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ItemsManagementController extends Controller
 {
@@ -42,10 +43,6 @@ class ItemsManagementController extends Controller
         } else {
             $items = items::orderBy('created_at', 'desc')->paginate(20);
         }
-
-        // $response = Http::withToken('eyJhbGciOiJIUzUxMiIsImlhdCI6MTY3MDA1Mjk3NSwiZXhwIjoxODI1NTcyOTc1fQ.eyJ1c2VybmFtZSI6InN1c2FuIn0.PzkictZ3b7nthXuXthRijRVsz9j58aL-2aRNSUpmKZzFWxXNL8ae0eU7craWOFZzpq5LlBBovjwMHu0QZUTl4w')->withHeaders([
-        //     'key' => 'eiWee8ep9due4deeshoa8Peichai8Eih'
-        // ])->get('http://192.168.74.74:5000/ui3/v1/items')->getBody();
 
         return view('assets.index', ['title' => 'Assets', 'subtitle' => 'List'], compact('items'));
     }
@@ -176,10 +173,14 @@ class ItemsManagementController extends Controller
         $data['tanggal_invoice']    = $request->tanggal_invoice;
         $data['user_id']            = auth()->user()->id;
         $data['no_inventory']       = 'UIII' . $kode_lokasi . $kode_sumber . $kode_golongan . $kode_jenis . $kode_kelompok . $year . $seq_number;
-        // $data['nilai_penyusutan']   = $request->total * $request->umur_penyusutan;
 
-        // dd($data);
-        items::create($data);
+        for ($i = 1; $i <= $request->jumlah_item; $i++) {
+            $no_laporan = Str::padLeft($i, 5, '0');
+            $data['no_laporan'] = $year . $no_laporan;
+            items::create($data);
+        }
+
+        $data['no_laporan'] = $i;
         return redirect('/assets')->with('success', 'barang baru telah ditambahkan');
     }
 
