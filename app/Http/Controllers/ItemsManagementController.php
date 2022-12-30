@@ -38,10 +38,10 @@ class ItemsManagementController extends Controller
         if ($request->has('search')) {
             $items = items::where('no_inventory', 'LIKE', '%' . $request->search . '%')
                 ->orWhere('nama_barang', 'LIKE', '%' . $request->search . '%')
-                ->orderBy('created_at', 'desc')
+                ->orderBy('no_inventory', 'asc')
                 ->paginate(20);
         } else {
-            $items = items::orderBy('created_at', 'desc')->paginate(20);
+            $items = items::orderBy('no_inventory', 'asc')->paginate(20);
         }
 
         return view('assets.index', ['title' => 'Assets', 'subtitle' => 'List'], compact('items'));
@@ -88,13 +88,11 @@ class ItemsManagementController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->validate([
             'nama_barang'           => ['required', 'string', 'max:255'],
             'nilai_perolehan'       => ['required', 'max:255'],
             'jumlah_item'           => ['required'],
             'total'                 => ['required', 'integer'],
-            // 'ukuran_item'           => ['required'],
             'tanggal_invoice'       => ['required', 'date'],
             'kelompok_aktap_id'     => ['required'],
             'data_unit_id'          => ['required'],
@@ -103,9 +101,6 @@ class ItemsManagementController extends Controller
             'golongan_item_id'      => ['required'],
             'jenis_item_id'         => ['required'],
             'kelompok_item_id'      => ['required'],
-            'detailbarang_id'       => ['required'],
-            'brand_id'              => ['required'],
-            'stock'                 => ['required', 'boolean'],
             'image.*'               => ['image', 'mimes:png,jpg,jpeg,JPG,JPEG'],
             'location'              => ['required'],
         ]);
@@ -145,11 +140,6 @@ class ItemsManagementController extends Controller
         $kode_kelompok = $kelompok[1];
         $data['kelompok_item_id'] = $id_kelompok;
 
-        $detail = explode(".", $request->detailbarang_id);
-        $id_detail = $detail[0];
-        $seq_number = $detail[1];
-        $data['detailbarang_id'] = $id_detail;
-
         $location = explode(",", $request->location);
         $lat = $location[0];
         $lng = $location[1];
@@ -162,25 +152,24 @@ class ItemsManagementController extends Controller
 
         $data['nama_barang']        = $request->nama_barang;
         $data['nilai_perolehan']    = $request->nilai_perolehan;
-        // $data['ukuran_item'] = $request->ukuran_item;
         $data['total']              = $request->total;
         $data['kelompok_aktap_id']  = $request->kelompok_aktap_id;
         $data['data_unit_id']       = $request->data_unit_id;
         $data['brand_id']           = $request->brand_id;
         $data['keterangan']         = $request->keterangan;
         $data['umur_penyusutan']    = $request->umur_penyusutan;
-        $data['stock']              = $request->stock;
         $data['tanggal_invoice']    = $request->tanggal_invoice;
         $data['user_id']            = auth()->user()->id;
-        $data['no_inventory']       = 'UIII' . $kode_lokasi . $kode_sumber . $kode_golongan . $kode_jenis . $kode_kelompok . $year . $seq_number;
+        $data['flag']               = 0;
+        $data['lantai']             = $request->lantai;
+        $data['ruangan']            = $request->ruangan;
 
         for ($i = 1; $i <= $request->jumlah_item; $i++) {
             $no_laporan = Str::padLeft($i, 5, '0');
-            $data['no_laporan'] = $year . $no_laporan;
+            $data['no_inventory']       = 'UIII' . $kode_lokasi . $kode_sumber . $kode_golongan . $kode_jenis . $kode_kelompok . $year . $no_laporan;
+
             items::create($data);
         }
-
-        $data['no_laporan'] = $i;
         return redirect('/assets')->with('success', 'barang baru telah ditambahkan');
     }
 
@@ -241,16 +230,12 @@ class ItemsManagementController extends Controller
             'nama_barang' => 'required|string|max:255',
             'nilai_perolehan' => 'required|max:255',
             'jumlah_item' => 'required',
-            // 'ukuran_item' => 'required',
             'tanggal_invoice' => 'required|date',
             'lokasi_id' => 'required',
             'sumber_perolehan_id' => 'required',
             'golongan_item_id' => 'required',
             'jenis_item_id' => 'required',
             'kelompok_item_id' => 'required',
-            'detailbarang_id' => 'required',
-            'brand_id' => 'required',
-            'stock' => 'required', 'boolean',
             'image.*' => 'image|mimes:png,jpg,jpeg,JPG,JPEG'
         ];
 
@@ -291,11 +276,6 @@ class ItemsManagementController extends Controller
         $kode_kelompok = $kelompok[1];
         $data['kelompok_item_id'] = $id_kelompok;
 
-        $detail = explode(".", $request->detailbarang_id);
-        $id_detail = $detail[0];
-        $seq_number = $detail[1];
-        $data['detailbarang_id'] = $id_detail;
-
         $location = explode(",", $request->location);
         $lat = $location[0];
         $lng = $location[1];
@@ -307,7 +287,6 @@ class ItemsManagementController extends Controller
 
         $data['nama_barang']        = $request->nama_barang;
         $data['nilai_perolehan']    = $request->nilai_perolehan;
-        // $data['ukuran_item'] = $request->ukuran_item;
         $data['total']              = $request->total;
         $data['kelompok_aktap_id']  = $request->kelompok_aktap_id;
         $data['data_unit_id']       = $request->data_unit_id;
@@ -317,6 +296,7 @@ class ItemsManagementController extends Controller
         $data['stock']              = $request->stock;
         $data['tanggal_invoice']    = $request->tanggal_invoice;
         $data['user_id']            = auth()->user()->id;
+        // substr seq_number variable substr("UIII043209972200001",14)
         $data['no_inventory']       = 'UIII' . $kode_lokasi . $kode_sumber . $kode_golongan . $kode_jenis . $kode_kelompok . $year . $seq_number;
 
         $asset->update($data);

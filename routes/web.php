@@ -26,6 +26,7 @@ use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\OutgoingLetterController;
 use App\Http\Controllers\PerformanceReportController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SourceIncomeController;
 use App\Http\Controllers\SuppliersController;
 
@@ -64,11 +65,6 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('/positions/import', [PositionController::class, 'import'])->name('positions.import');
     Route::post('/positions/export', [PositionController::class, 'export'])->name('positions.export');
     Route::resource('positions', PositionController::class);
-    Route::get('outgoing-letters/{outgoing_letter}/pdf', [OutgoingLetterController::class, 'pdf'])->name('outgoing-letters.pdf');
-    Route::resource('outgoing-letters', OutgoingLetterController::class);
-    Route::resource('entry-letters', EntryLetterController::class)->except('update');
-    Route::get('/performance-reports/archive', [PerformanceReportController::class, 'archive'])->name('performance-reports.archive');
-    Route::resource('performance-reports', PerformanceReportController::class);
     Route::resource('activities', ActivityController::class);
     Route::delete('additional-reports/{additional_report}', [AdditionalReportController::class, 'destroy'])->name('additional-reports.destroy');
     Route::delete('additionals/{additional}', [AdditionalController::class, 'destroy'])->name('additionals.destroy');

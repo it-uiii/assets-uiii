@@ -129,27 +129,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Brand</label>
-                            <div class="col-sm-10">
-                                <select class="form-control @error('brand_id') is-invalid @enderror" name="brand_id"
-                                    required>
-                                    <option value="">Choose Brand</option>
-                                    @foreach ($brands as $brand)
-                                        @if (old('brand_id') == $brand->id)
-                                            <option value="{{ $brand->id }}" selected>{{ $brand->nama_brand }}</option>
-                                        @else
-                                            <option value="{{ $brand->id }}">{{ $brand->nama_brand }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                                @error('brand_id')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Description</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" id="keterangan" name="keterangan">{!! old('keterangan') !!}</textarea>
@@ -175,21 +154,6 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Stock item</label>
-                            <div class="col-sm-2">
-                                <select class="form-control @error('stock') is-invalid @enderror" name="stock">
-                                    <option value="">Choose Status</option>
-                                    <option value="1">Stock</option>
-                                    <option value="0">Off Stock</option>
-                                </select>
-                                @error('stock')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
                         </div>
                     </div>
@@ -352,7 +316,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Detail item</label>
                             <div class="col-sm-10">
                                 <select class="form-control @error('detailbarang_id') is-invalid @enderror"
@@ -378,7 +342,7 @@
                                     </div>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="card card-primary">

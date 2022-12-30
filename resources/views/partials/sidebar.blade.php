@@ -11,71 +11,22 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    @can('letter-list')
-                    {{-- <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="fas fa-envelope nav-icon"></i>
-                            <p>
-                                Surat
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @can('outgoing-letter-list')
-                            <li class="nav-item">
-                                <a href="{{ route('outgoing-letters.index') }}" class="nav-link">
-                                    <i class="fa-sharp fa-solid fa-arrow-up nav-icon"></i>
-                                    <p>Surat Keluar</p>
-                                </a>
-                            </li>
-                            @endcan
-                            @can('entry-letter-list')
-                            <li class="nav-item">
-                                <a href="{{ route('entry-letters.index') }}" class="nav-link">
-                                    <i class="fa-sharp fa-solid fa-arrow-down nav-icon"></i>
-                                    <p>Surat Masuk</p>
-                                </a>
-                            </li>
-                            @endcan
-                        </ul>
-                    </li> --}}
-                    @endcan
-                    @can('performance-report-list')
-                    {{-- <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="nav-icon fas fa-file-alt"></i>
-                            <p>
-                                Laporan Kinerja
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('performance-reports.index') }}" class="nav-link">
-                                    <i class="fas fa-file nav-icon"></i>
-                                    <p>Managemen Laporan</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> --}}
-                    @endcan
-                    @can('post-list')
-                    {{-- <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-newspaper"></i>
-                        <p>
-                            Blogs
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                        </a>
-                    </li> --}}
-                    @endcan
                     @can('asset-list')
                     <li class="nav-item">
                         <a href="{{ route('assets.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-cubes"></i>
                         <p>
                             Inventory
+                        </p>
+                        </a>
+                    </li>
+                    @endcan
+                    @can('report-list')
+                    <li class="nav-item">
+                        <a href="/assets/reports" class="nav-link">
+                        <i class="nav-icon fas fa-cubes"></i>
+                        <p>
+                            Reports
                         </p>
                         </a>
                     </li>

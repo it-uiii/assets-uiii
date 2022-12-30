@@ -31,7 +31,6 @@
                         <tr class="text-center">
                             <th style="width: 10px">#</th>
                             <th>No Inventory</th>
-                            <th>No Report</th>
                             <th>Name</th>
                             <th>Location Item</th>
                             <th>acquisition value</th>
@@ -50,7 +49,6 @@
                     <tr>
                         <td>{{ $items->firstItem() + $loop->index }}</td>
                         <td class="text-center">{{ $item->no_inventory }}</td>
-                        <td class="text-center">{{ $item->no_laporan ?? "-" }}</td>
                         <td>{{ $item->nama_barang }}</td>
                         <td>
                             @if (empty($item->lokasi->lokasi))
@@ -153,10 +151,10 @@
                             <label>Kelompok Barang</label>
                             <input type="text" class="form-control" value="{{ $item->kelompokItem->nama_kelompok }}" readonly>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Merk</label>
                             <input type="text" class="form-control" value="{{ $item->brand->nama_brand }}" readonly>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
