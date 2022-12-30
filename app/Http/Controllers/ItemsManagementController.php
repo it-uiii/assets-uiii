@@ -297,7 +297,7 @@ class ItemsManagementController extends Controller
         $data['tanggal_invoice']    = $request->tanggal_invoice;
         $data['user_id']            = auth()->user()->id;
         // substr seq_number variable substr("UIII043209972200001",14)
-        $data['no_inventory']       = 'UIII' . $kode_lokasi . $kode_sumber . $kode_golongan . $kode_jenis . $kode_kelompok . $year . $seq_number;
+        $data['no_inventory']       = 'UIII' . $kode_lokasi . $kode_sumber . $kode_golongan . $kode_jenis . $kode_kelompok . $year;
 
         $asset->update($data);
         return redirect()->route('assets.index')
